@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "97f7f8e1-18c6-4788-bf44-f5d3db595e8c"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -28,7 +31,17 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./config",
+                "output": "./config/"
+              },
+              {
+                "glob": "en.json",
+                "input": "./localization",
+                "output": "./assets/i18n/"
+              }
             ],
             "styles": [
               "src/styles.scss"
