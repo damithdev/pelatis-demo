@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { BusinessDashboardFacade } from '../store/business-dashboard-store.facade';
 
 @Component({
   selector: 'app-business-dashbaord',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusinessDashbaordComponent implements OnInit {
 
-  constructor() { }
+  constructor(private facade:BusinessDashboardFacade) { }
 
   ngOnInit(): void {
+    this.facade.loadMenuItems();
   }
 
 }

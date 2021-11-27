@@ -19,6 +19,7 @@ import { BusinessDashboardModule } from './modules/business-dashboard/business-d
 /** Third Party */
 import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { SharedModule } from './shared/shared.module';
 
 
 ///// Other
@@ -46,6 +47,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     /** App Dependencies */
     AppRoutingModule,
     BusinessDashboardModule,
+    SharedModule,
 
     /** Third Party Dependencies */
     TranslateModule.forRoot({

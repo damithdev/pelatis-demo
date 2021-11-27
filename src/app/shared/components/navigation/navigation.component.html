@@ -1,0 +1,8 @@
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper" [ngStyle]="{'margin-left':(menuState | async) ?'0rem':'-15rem'}">
+        <div class="sidebar-heading" *ngIf="(menuCategory | async) === 'HOME'">HOME PAGE</div>
+        <div class="list-group list-group-flush" *ngFor="let item of menuItems | async">
+            <a href="#" class="list-group-item list-group-item-action bg-light">{{item.name}}</a>
+        </div>
+    </div>
+    <!-- /#page-content-wrapper -->
