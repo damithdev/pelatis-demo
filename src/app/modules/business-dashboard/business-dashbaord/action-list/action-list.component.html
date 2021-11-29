@@ -1,3 +1,4 @@
-<p>
-  action-list works!
-</p>
+<div class="heading-4-bold">Things You Can Do</div>
+<ul style="list-style-type:none;padding-left:0;padding-top: 1rem;">
+  <li *ngFor="let item of canDoItems" style="padding-top: 1rem;"><a class="link-item-general">{{item.name}}</a></li>
+</ul>

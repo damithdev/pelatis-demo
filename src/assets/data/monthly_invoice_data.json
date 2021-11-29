@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "date": "2021-08-28T09:20:00Z",
+    "invoiced": 285313.9,
+    "expenses": 768976.59,
+    "currency": "LKR"
+  },
+  {
+    "id": 2,
+    "date": "2021-07-28T09:20:00Z",
+    "invoiced": 644445.55,
+    "expenses": 798328.13,
+    "currency": "LKR"
+  },
+  {
+    "id": 3,
+    "date": "2021-06-28T09:20:00Z",
+    "invoiced": 113079.77,
+    "expenses": 315171.77,
+    "currency": "LKR"
+  },
+  {
+    "id": 4,
+    "date": "2021-05-28T09:20:00Z",
+    "invoiced": 171350.41,
+    "expenses": 628375.88,
+    "currency": "LKR"
+  },
+  {
+    "id": 5,
+    "date": "2021-04-28T09:20:00Z",
+    "invoiced": 593542.92,
+    "expenses": 642436.0,
+    "currency": "LKR"
+  },
+  {
+    "id": 6,
+    "date": "2021-03-28T09:20:00Z",
+    "invoiced": 316136.02,
+    "expenses": 413321.63,
+    "currency": "LKR"
+  },
+  {
+    "id": 7,
+    "date": "2021-02-28T09:20:00Z",
+    "invoiced": 821313.64,
+    "expenses": 769117.19,
+    "currency": "LKR"
+  },
+  {
+    "id": 8,
+    "date": "2021-01-28T09:20:00Z",
+    "invoiced": 229496.29,
+    "expenses": 815652.0,
+    "currency": "LKR"
+  },
+  {
+    "id": 9,
+    "date": "2020-12-28T09:20:00Z",
+    "invoiced": 801399.59,
+    "expenses": 853507.83,
+    "currency": "LKR"
+  },
+  {
+    "id": 10,
+    "date": "2020-11-28T09:20:00Z",
+    "invoiced": 190414.72,
+    "expenses": 133788.84,
+    "currency": "LKR"
+  },
+  {
+    "id": 11,
+    "date": "2020-10-28T09:20:00Z",
+    "invoiced": 298275.77,
+    "expenses": 210655.68,
+    "currency": "LKR"
+  },
+  {
+    "id": 12,
+    "date": "2020-09-28T09:20:00Z",
+    "invoiced": 266155.97,
+    "expenses": 297503.13,
+    "currency": "LKR"
+  }
+]

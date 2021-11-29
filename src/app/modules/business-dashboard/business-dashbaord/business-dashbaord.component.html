@@ -1,4 +1,16 @@
 <div class="container-fluid">
-    <h1 class="mt-4">Business Dashboard</h1>
-    <p>Body</p>
+    <div class="row">
+        <div class="heading-1-bold mx-4 my-5">Home</div>
+    </div>
+    <div class="row container-fluid">
+        <div class="col-md-4">
+            <app-action-list [canDoItems]="canDoItems"></app-action-list>
+        </div>
+        <div class="col-md-8">
+            <app-business-stats 
+                [cashFlowData]="cashFlowData$"
+                [netIncomeData]="(netIncomeData$ | async) || netIncomeDataInit"
+                [loading]="(loading$ | async) || false"></app-business-stats>
+        </div>
+    </div>
 </div>

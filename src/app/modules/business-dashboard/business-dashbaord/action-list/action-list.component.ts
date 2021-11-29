@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { MenuItem } from 'src/app/shared/models/menu-item.model';
+import { BusinessDashboardFacade } from '../../store/business-dashboard-store.facade';
 
 @Component({
   selector: 'app-action-list',
@@ -7,9 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActionListComponent implements OnInit {
 
-  constructor() { }
+  @Input() canDoItems: MenuItem[] = [];
+  ngOnInit(){
 
-  ngOnInit() {
   }
 
 }

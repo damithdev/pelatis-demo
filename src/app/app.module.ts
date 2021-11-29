@@ -17,17 +17,22 @@ import { AppComponent } from './app.component';
 import { BusinessDashboardModule } from './modules/business-dashboard/business-dashboard.module';
 
 /** Third Party */
-import {TranslateModule,TranslateLoader} from '@ngx-translate/core';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SharedModule } from './shared/shared.module';
-
+import { ChartsModule } from 'ng2-charts';
+import { CoreModule } from './core/core.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
+import { ToastrModule } from 'ngx-toastr';
 
 ///// Other
 
 
 
 
-export function configServiceFactory (config: ConfigService) {
+export function configServiceFactory(config: ConfigService) {
   return () => config.load()
 }
 
@@ -48,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppRoutingModule,
     BusinessDashboardModule,
     SharedModule,
+    CoreModule,
 
     /** Third Party Dependencies */
     TranslateModule.forRoot({
@@ -56,7 +62,11 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    ToastrModule.forRoot(),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
+
 
   ],
   providers: [

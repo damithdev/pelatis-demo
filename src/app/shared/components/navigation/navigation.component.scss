@@ -3,18 +3,18 @@ body {
 }
 #sidebar-wrapper {
   min-height: 100vh;
-  margin-left: -15rem;
   -webkit-transition: margin 0.25s ease-out;
   -moz-transition: margin 0.25s ease-out;
   -o-transition: margin 0.25s ease-out;
   transition: margin 0.25s ease-out;
+  background-color: #FBFBFF;
+  box-shadow: 1px 0px 0px #E0E1E4;
 }
 #sidebar-wrapper .sidebar-heading {
-  padding: 0.875rem 1.25rem;
-  font-size: 1.2rem;
+  padding: 2rem 2rem;
 }
 #sidebar-wrapper .list-group {
-  width: 15rem;
+  width: 25rem;
 }
 #page-content-wrapper {
   min-width: 100vw;
@@ -34,3 +34,9 @@ body {
 //   //   margin-left: -15rem;
 //   // }
 // }
+
+.icon {
+  position: relative;
+  vertical-align: middle;
+
+}

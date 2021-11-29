@@ -7,6 +7,12 @@ import { ActionListComponent } from './business-dashbaord/action-list/action-lis
 import { BusinessStatsComponent } from './business-dashbaord/business-stats/business-stats.component';
 import { RouterModule } from '@angular/router';
 import { BusinessDashboardRoutes } from './business-dashboard.routes';
+import { ChartsModule } from 'ng2-charts';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { effects } from './store/effects';
 
 
 
@@ -21,7 +27,11 @@ import { BusinessDashboardRoutes } from './business-dashboard.routes';
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(BusinessDashboardRoutes)
+    RouterModule.forChild(BusinessDashboardRoutes),
+    ChartsModule,
+    SharedModule,
+    StoreModule.forFeature('businessDashboard',reducers),
+    EffectsModule.forFeature(effects)
   ]
 })
 export class BusinessDashboardModule { }

@@ -1,0 +1,121 @@
+.heading-1-bold {
+    font-family: "Work Sans", "Roboto Mono", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 3.2rem;
+    line-height: 4.4rem;
+    display: flex;
+    align-items: center;
+    color: #3d3d3d;
+}
+
+.heading-4-bold {
+    font-family: "Work Sans", "Roboto Mono", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 2rem;
+    line-height: 2.8rem;
+    color: #666666;
+}
+
+.label-3-medium {
+    font-family: Inter, "Roboto Mono", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    /* identical to box height, or 143% */
+
+    display: flex;
+    align-items: center;
+
+    :hover {
+        color: #511FB7;
+    }
+}
+
+.label-2-regular {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    /* identical to box height, or 150% */
+
+    text-align: left;
+
+    /* Text/subdued */
+
+    color: #666666;
+}
+
+.link-item-general {
+    font-family: Inter, "Roboto Mono", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    text-decoration: none;
+    cursor: pointer;
+    /* identical to box height */
+
+    color: #7b61ff;
+}
+
+.label-table-header {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    text-align: right;
+
+    color: #65617d;
+}
+
+.label-table-row-header {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+
+    color: #65617d;
+}
+
+.label-table-data-1 {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    text-align: right;
+
+    color: #6c63ff;
+}
+
+div {
+    color: #3d3d3d;
+}
+
+table.table-border-style {
+    border: none;
+    border-collapse: collapse;
+
+    td {
+        border-bottom: 1px solid #E0E0E0;
+        padding-top: 1rem;
+
+        :first-child {
+            border-left: none;
+        }
+
+        :last-child {
+            border-right: none;
+        }
+    }
+
+    th {
+        border-bottom: 2px solid #e0e1e4;
+    }
+}

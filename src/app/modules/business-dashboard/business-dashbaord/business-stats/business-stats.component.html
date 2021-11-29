@@ -1,3 +1,42 @@
-<p>
-  business-stats works!
-</p>
+<div #cashFlowChart>
+  <div class="p-2 heading-4-bold">Cashflow</div>
+  <div class="p-2 label-2-regular">Cash coming in and going out of your business</div>
+  <div class="chart-wrapper" *ngIf="!loading && cashFlowData != null;else otherContent">
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
+      [options]="barChartOptions" [plugins]="barChartPlugins"
+      [legend]="barChartLegend" [chartType]="barChartType">
+    </canvas>
+  </div>
+  <ng-template #otherContent>
+    <h4>Loading...</h4>
+  </ng-template>
+</div>
+<div #netIncomeTable>
+  <div class="p-2 heading-4-bold">Net Income</div>
+  
+  <table class="table table-border-style">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col" class="label-table-header">{{netIncomeData.previous.year}}</th>
+        <th scope="col" class="label-table-header">{{netIncomeData.current.year}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row" class="label-table-row-header">Income</td>
+        <td class="label-table-data-1">Rs. {{netIncomeData.previous.income }}</td>
+        <td class="label-table-data-1">Rs. {{netIncomeData.current.income}}</td>
+      </tr>
+      <tr>
+        <td scope="row" class="label-table-row-header">Expense</td>
+        <td class="label-table-data-1">Rs. {{netIncomeData.previous.expense}}</td>
+        <td class="label-table-data-1">Rs. {{netIncomeData.current.expense}}</td>
+      </tr>
+      <tr >
+        <td scope="row" class="label-table-row-header">Net Income</td>
+        <td class="label-table-data-1">Rs. {{netIncomeData.previous.net}}</td>
+        <td class="label-table-data-1">Rs. {{netIncomeData.current.net}}</td>      </tr>
+    </tbody>
+  </table>
+</div>
