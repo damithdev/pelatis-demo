@@ -46,7 +46,7 @@ const businessDashboardReducerInternal = createReducer(
         arrayForSort.forEach(item => {
             let date = new Date(item.date);
             let MMYY = DateTimeUtility.getMMYYDate(date);
-            console.log(date);
+            // console.log(date);
             barChartLabels.push(MMYY?MMYY:"");
             barChartDataPoints.push(item.expenses);
 

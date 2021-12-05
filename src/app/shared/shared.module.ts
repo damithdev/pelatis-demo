@@ -5,6 +5,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { FooterComponent } from './components/footer/footer.component';
 import { NavigationToggleComponent } from './components/navigation-toggle/navigation-toggle.component';
 import { NavigationMenuService } from './services/NavigationMenu.service';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 
 
 
@@ -12,19 +13,21 @@ import { NavigationMenuService } from './services/NavigationMenu.service';
   declarations: [
     NavigationComponent,
     NavigationToggleComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,
     RouterModule
   ],
   providers: [
-    NavigationMenuService
+    NavigationMenuService,
   ],
   exports : [
     NavigationComponent,
     NavigationToggleComponent,
-    FooterComponent
+    FooterComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule { }

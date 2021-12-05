@@ -1,7 +1,8 @@
 import { invalid } from '@angular/compiler/src/render3/view/util';
-import { Component, HostListener, OnInit, Output } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, Output } from '@angular/core';
 import * as $ from 'jquery';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { NavigationMenuService } from '../../services/NavigationMenu.service';
 
 @Component({
@@ -9,11 +10,14 @@ import { NavigationMenuService } from '../../services/NavigationMenu.service';
   templateUrl: './navigation-toggle.component.html',
   styleUrls: ['./navigation-toggle.component.scss']
 })
-export class NavigationToggleComponent implements OnInit {
-  
-  menuState : Observable<boolean>;
-  constructor(public navigationMenuService:NavigationMenuService) { 
-    this.menuState = navigationMenuService.getMenuToggleButtonState();
+export class NavigationToggleComponent implements OnInit , OnDestroy{
+
+  menuState$: Observable<boolean>;
+
+  constructor(public navigationMenuService: NavigationMenuService) {
+    this.menuState$ = navigationMenuService.getMenuToggleButtonState();
+  }
+  ngOnDestroy(): void {
   }
 
   ngOnInit() {
@@ -21,11 +25,11 @@ export class NavigationToggleComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event : any) {
+  onResize(event: any) {
     this.navigationMenuService.fixMenuVisibility(event.target.innerWidth);
   }
-  
-  toggleButtonClicked(){
+
+  toggleButtonClicked() {
     this.navigationMenuService.flipMenuToggleState();
   }
 

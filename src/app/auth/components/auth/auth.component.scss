@@ -1,0 +1,47 @@
+.backdrop {
+    background-color: white;
+}
+
+
+
+.log-pelatis-header-text {
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 3.2rem;
+    line-height: 3.75rem;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+.form-input {
+    margin-bottom: 1rem;
+    padding: 1rem;
+
+    font-family: "Inter", "sans-serif";
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    align-content: flex-start;
+    border-radius: 0.8rem;
+}
+
+.submit-button {
+    border-radius: 0.8rem;
+    background-color: #511fb7;
+    font-family: "Inter", "sans-serif";
+    font-weight: 500;
+    font-style: normal;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    height: 4rem;
+    padding: 0.8rem;
+}
+
+
+.absolute-bottom-logo {
+    position: absolute;
+    bottom: 10rem;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}

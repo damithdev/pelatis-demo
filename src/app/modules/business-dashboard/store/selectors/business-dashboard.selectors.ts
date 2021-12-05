@@ -13,7 +13,7 @@ const getCashflowDataState = createSelector(
 );
 
 export const getCashFlowData = createSelector(getCashflowDataState, entity => {
-  console.log(entity)
+  // console.log(entity)
   return entity;
 });
 

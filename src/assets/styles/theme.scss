@@ -1,5 +1,6 @@
+// Headings
 .heading-1-bold {
-    font-family: "Work Sans", "Roboto Mono", sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 3.2rem;
@@ -9,8 +10,19 @@
     color: #3d3d3d;
 }
 
+.heading-3-bold {
+    font-family: 'Work Sans', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.4rem;
+    color: #4F4F4F;
+    vertical-align: top;
+    align-self: left;
+}
+
 .heading-4-bold {
-    font-family: "Work Sans", "Roboto Mono", sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 2rem;
@@ -18,8 +30,26 @@
     color: #666666;
 }
 
+
+// Labels
+
+.label-2-regular {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.8rem;
+    /* identical to box height, or 150% */
+
+    text-align: left;
+
+    /* Text/subdued */
+
+    color: #666666;
+}
+
 .label-3-medium {
-    font-family: Inter, "Roboto Mono", sans-serif;
+    font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 1.6rem;
@@ -34,23 +64,59 @@
     }
 }
 
-.label-2-regular {
-    font-family: Inter;
+.label-7-regular {
+    font-family: 'Inter', sans-serif;
     font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 24px;
-    /* identical to box height, or 150% */
-
-    text-align: left;
-
-    /* Text/subdued */
-
-    color: #666666;
+    font-weight: 400;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+    /* identical to box height, or 143% */
 }
 
+.link-small {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.45rem;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    /* identical to box height */
+
+    color: #7b61ff;
+}
+
+
+.link-medium {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    text-decoration: none;
+    cursor: pointer;
+    /* identical to box height */
+
+    color: #7b61ff;
+}
+
+.link-medium-2 {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 1.7rem;
+    text-decoration: none;
+    cursor: pointer;
+    /* identical to box height */
+
+    color: #7b61ff;
+}
+
+
 .link-item-general {
-    font-family: Inter, "Roboto Mono", sans-serif;
+    font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 1.4rem;
@@ -62,8 +128,52 @@
     color: #7b61ff;
 }
 
+// Paragraph
+
+.paragraph-1-regular{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.3rem;
+    line-height: 1.57rem;
+    text-align: center;
+    color: #000000;
+}
+
+.paragraph-2-regular{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    text-align: center;
+    color: #000000;
+}
+
+.paragraph-3-regular {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+
+    color: #535461;
+}
+
+.paragraph-small{
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.45rem;
+    text-align: center;
+    color: #828282;
+}
+
+// Table
+
 .label-table-header {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 1.6rem;
@@ -74,7 +184,7 @@
 }
 
 .label-table-row-header {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 1.6rem;
@@ -84,7 +194,7 @@
 }
 
 .label-table-data-1 {
-    font-family: Inter;
+    font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 1.6rem;

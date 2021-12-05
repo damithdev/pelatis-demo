@@ -1,7 +1,7 @@
 /** Angular core modules */
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 /** Service */
 import { ConfigService } from './app-config.service';
@@ -26,6 +26,10 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthModule } from './auth/auth.module';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { AuthService } from './auth/auth.service';
+
 
 ///// Other
 
@@ -54,6 +58,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BusinessDashboardModule,
     SharedModule,
     CoreModule,
+    AuthModule,
 
     /** Third Party Dependencies */
     TranslateModule.forRoot({

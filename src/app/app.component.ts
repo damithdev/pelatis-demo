@@ -1,22 +1,41 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { ConfigService } from './app-config.service';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit,OnDestroy{
   title = 'pelatis-demo';
 
+  private authSub!: Subscription;
+  isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(
     private translate: TranslateService,
     private configService: ConfigService,
-    // public auth: AuthService
+    private auth: AuthService
   ) {
     this.setupLanguage();
     this.getNotificationOptions();
+  }
+  ngOnDestroy(): void {
+    console.log("on destroy")
+    this.authSub.unsubscribe();
+  }
+  ngOnInit(): void {
+    this.auth.autoLogin();
+    this.authSub = this.auth.user.subscribe(user => {
+      if (user.token) {
+        console.log(user)
+        this.isLoggedIn$.next(true)
+        return;
+      }
+      this.isLoggedIn$.next(false);
+    });
   }
   /**
    * Sets up default language for the application. Uses browser default language.
