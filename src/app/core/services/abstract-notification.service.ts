@@ -5,15 +5,6 @@ import { WebNotificationService } from './web-notification.service';
 export function notificationFactory(
   toastrService: ToastrService
 ): AbstractNotificationService {
-  // if (environment.desktop) {
-  //   return new DesktopNotificationService();
-  //   //return new WebNotificationService(toastrService);
-  // }
-
-  // if (environment.mobile) {
-  //   return new MobileNotificationService();
-  // }
-
   return new WebNotificationService(toastrService);
 }
 

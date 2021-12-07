@@ -7,6 +7,11 @@ export const AppRoutes: Routes = [
     redirectTo:'home',
     pathMatch:'full'
   },
+  // {
+  //   // Lazy Loading
+  //   path:'home',
+  //   loadChildren:()=>import('./modules/business-dashboard/business-dashboard.module').then(m=>m.BusinessDashboardModule)
+  // },
   {
     path: '**',
     redirectTo: 'home'

@@ -20,9 +20,9 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
     CommonModule,
     RouterModule
   ],
-  providers: [
-    NavigationMenuService,
-  ],
+  // providers: [
+  //   NavigationMenuService,
+  // ],
   exports : [
     NavigationComponent,
     NavigationToggleComponent,
