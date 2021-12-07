@@ -7,7 +7,7 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 import { ConfigService } from './app-config.service';
 
 /** Routes */
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutes } from './app.routes';
 
 
 /** Guards */
@@ -29,6 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthModule } from './auth/auth.module';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { AuthService } from './auth/auth.service';
+import { RouterModule } from '@angular/router';
 
 
 ///// Other
@@ -54,7 +55,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HttpClientModule,
 
     /** App Dependencies */
-    AppRoutingModule,
+    RouterModule.forRoot(AppRoutes),
     BusinessDashboardModule,
     SharedModule,
     CoreModule,
