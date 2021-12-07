@@ -19,6 +19,5 @@ import { SharedModule } from '../shared/shared.module';
     FormsModule,
     SharedModule
   ],
-  providers:[AuthService]
 })
 export class AuthModule { }
