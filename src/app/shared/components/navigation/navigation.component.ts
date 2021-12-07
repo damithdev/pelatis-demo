@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { MenuItem, MenuItemCategory } from '../../models/menu-item.model';
@@ -9,7 +9,7 @@ import { NavigationMenuService } from '../../services/NavigationMenu.service';
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss']
 })
-export class NavigationComponent implements OnInit,OnDestroy {
+export class NavigationComponent implements OnInit,OnDestroy,AfterContentInit {
 
 
 
@@ -18,19 +18,33 @@ export class NavigationComponent implements OnInit,OnDestroy {
   menuCategory: Observable<MenuItemCategory> = new Observable<MenuItemCategory>();
 
   constructor(public navigationMenuService: NavigationMenuService, private authService: AuthService) {
-    this.menuState = this.navigationMenuService.getMenuToggleState();
-    this.menuCategory = this.navigationMenuService.getMenuCategory();
-    this.menuItems = this.navigationMenuService.getMenuItems();
   }
+
   ngOnDestroy(): void {
+
   }
 
   ngOnInit() {
+    this.menuState = this.navigationMenuService.getMenuToggleState();
+  }
 
+  ngAfterContentInit(): void {
+    setTimeout(() =>{
+      this.menuCategory = this.navigationMenuService.getMenuCategory();
+      this.menuItems = this.navigationMenuService.getMenuItems();  
+    });
   }
 
   onLogoutClick(){
     this.authService.logout();
   }
+
+
+  /*
+  NOTE : Handling ExpressionChangedAfterItHasBeenCheckedError
+
+  https://indepth.dev/posts/1001/everything-you-need-to-know-about-the-expressionchangedafterithasbeencheckederror-error
+  */
+
 
 }
