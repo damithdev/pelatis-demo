@@ -4,7 +4,7 @@ import { InvoiceDataModel } from "src/app/shared/models/invoice-data.model";
 import { MenuItem } from "src/app/shared/models/menu-item.model";
 import { NetIncomeDataModel } from 'src/app/shared/models/net-inome-data.model';
 import { DateTimeUtility } from 'src/app/shared/utility/date-util';
-import * as businessDashboardActions from "../actions/business-dashboard.action"
+import * as businessDashboardActions from "../actions"
 
 
 export interface BusinessDashboarReducerdState {

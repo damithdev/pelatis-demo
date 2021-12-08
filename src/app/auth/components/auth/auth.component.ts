@@ -12,10 +12,12 @@ import { AuthResponse, AuthService } from '../../auth.service';
 })
 export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
 
+  
   pelatisBottomLogoAboslute = true;
   isLoginMode = false;
   isLoading = false;
   error!: string | null;
+  showPassword = false;
 
   constructor(private elementRef: ElementRef,private authService: AuthService,private router:Router) { }
 
@@ -34,6 +36,15 @@ export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
     this.error = null;
+    this.showPassword = false;
+  }
+
+  onShowPassword(event:any) {
+    this.showPassword = true;
+  }
+
+  onHidePassword(event:any) {
+    this.showPassword = false;
   }
 
   @HostListener('window:resize', ['$event'])
@@ -44,7 +55,7 @@ export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
   heightChangeAction(){
     var height = window.innerHeight;
 
-    if(height > 600) {
+    if(height > 720) {
       this.pelatisBottomLogoAboslute = true;
     }else{
       this.pelatisBottomLogoAboslute = false;
@@ -54,6 +65,7 @@ export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
   onSubmit(form: NgForm){
 
     if(!form.valid){
+      
       return;
     }
 

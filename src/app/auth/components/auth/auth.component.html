@@ -1,4 +1,4 @@
-<div class="container col-xs-12 col-md-6 col-lg-3">
+<div class="container col-xs-12 col-md-6 col-lg-4">
     <div *ngIf="!isLoginMode ; else headerPlaceholder">
         <div class="text-center mb-4 mt-5">
             <img src="assets/images/logo.png">
@@ -15,32 +15,45 @@
         <div style="height: 10rem;"></div>
     </ng-template>
     <div class="shadow p-5 mb-5 bg-body rounded bg-white">
-        <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
+        <form #authForm="ngForm" (ngSubmit)="authForm.form.valid && onSubmit(authForm)">
             <div *ngIf="isLoginMode" class="heading-3-bold text-center mb-4">Sign in to your account</div>
-            <div *ngIf="error" class="alert alert-danger alert-dismissible fade show border border-danger"
-                role="alert">
+            <div *ngIf="error" class="alert alert-danger alert-dismissible fade show border border-danger" role="alert">
                 <div class="label-7-regular text-danger">{{error}}</div>
                 <button type="button" class="btn-close text-danger" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
             <div class="form-floating">
-                <input type="email" id="email" placeholder="email" class="form-control form-input" ngModel name="email"
-                    required email>
+                <input type="email" id="email" placeholder="email" class="form-control form-input" ngModel name="email" required email 
+                    #email="ngModel" [ngClass]="{ 'is-invalid': authForm.submitted && email.invalid }">
                 <label for="email" class="label-2-regular">Email</label>
+                <div class="invalid-feedback" *ngIf="authForm.submitted && email.invalid" style="position: relative; margin-top: -30;">
+                    <p *ngIf="email.errors">*Invalid Email</p>
+                </div>
             </div>
             <div class="form-floating">
-                <input type="password" id="password" placeholder="password" class="form-control form-input" ngModel
-                    name="password" required minlength="6">
+                <input [type]="showPassword ? 'text' : 'password'" id="password" placeholder="password"
+                    class="form-control form-input" ngModel name="password" required minlength="6"
+                    #password="ngModel" [ngClass]="{ 'is-invalid': authForm.submitted && password.invalid }">
                 <label for="password" class="label-2-regular">Password</label>
-            </div>
-            <div *ngIf="!isLoginMode" class="paragraph-1-regular d-flex justify-content-between mb-1">
-                At least 6 characters, but longer is better.
-                <a class="link-medium-2">Show</a>
+                <div class="invalid-feedback" *ngIf="authForm.submitted && password.invalid">
+                    <p *ngIf="password.errors">*Invalid Password</p>
+                </div>
             </div>
 
-            <div class="w-100 pt-3">
+            <div class="row">
+
+                    <div  class="paragraph-1-regular d-flex justify-content-between mb-1 mt-2">
+                        {{ !isLoginMode ? "At least 6 characters, but longer is better." : ""}}
+                        <a class="float-end link-medium-2 " (pointerdown)="onShowPassword($event)" *ngIf="password.value != null && password.value.length > 0"
+                            (pointerup)="onHidePassword($event)">Show</a>
+                    </div>
+                    
+            </div>
+            
+
+            <div class="w-100 pt-3 mt-4">
                 <button *ngIf="!isLoading; else loadingSpinnerBlock"
-                    class="btn btn-primary btn-lg btn-block w-100 submit-button" type="submit"
-                    [disabled]="!authForm.valid">{{ isLoginMode ?
+                    class="btn btn-primary btn-lg btn-block w-100 submit-button" role='button' type="submit">{{
+                    isLoginMode ?
                     "Login" : "Get started"}}</button>
 
                 <ng-template #loadingSpinnerBlock>
