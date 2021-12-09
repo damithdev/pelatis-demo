@@ -13,11 +13,6 @@ export class InvoiceDataService {
 
   getInvoiceData():Observable<InvoiceDataModel[]>{
     return this.http.get<any>('assets/data/monthly_invoice_data.json');
-    // data.subscribe(data => {
-    //   console.log(data)
-
-    // })
-    // return data;
   }
 
 

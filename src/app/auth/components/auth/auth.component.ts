@@ -14,7 +14,7 @@ export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
 
   
   pelatisBottomLogoAboslute = true;
-  isLoginMode = false;
+  isLoginMode = true;
   isLoading = false;
   error!: string | null;
   showPassword = false;

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { UserModel } from '../shared/models/user.model';
+import { Constants } from '../shared/utility/Constants';
 // import { JwtHelperService } from '@auth0/angular-jwt';
 // const JwtHelper = new JwtHelperService();
 
@@ -40,7 +41,7 @@ export class AuthService {
 
   signUp(email: string, password: string) {
     return this.http.post<AuthResponse>(
-      'http://localhost:63928/api/Accounts/register', {
+      Constants.API_ENDPOINT+'Accounts/register', {
       email: email,
       password: password
     }
@@ -53,7 +54,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http.post<AuthResponse>(
-      'http://localhost:63928/api/Accounts/login', {
+      Constants.API_ENDPOINT+'Accounts/login', {
       email: email,
       password: password
     }
@@ -65,17 +66,29 @@ export class AuthService {
   }
 
 
+  fetch() {
+    console.log("fetch")
+    return this.http.get<AuthResponse>(
+      Constants.API_ENDPOINT+'AppUsers/get'
+    ).pipe(
+      tap(data => {
+        console.log(data)
+        this.handleAuthData(data);
+      })
+    );
+  }
+
+
   handleAuthData(data: AuthResponse) {
     const updated = data.updatedDate ? new Date(data.updatedDate) : null;
-    const user = new UserModel(data.id, data.firstName, data.lastName, data.email, new Date(data.createdDate), updated, data.isDeleted,data.defaultBusinessId, data.token, new Date(data.expiry));
+    const user = new UserModel(data.id, data.firstName, data.lastName, data.email, new Date(data.createdDate), updated, data.isDeleted, data.defaultBusinessId, data.token, new Date(data.expiry));
     this._user$.next(user);
     localStorage.setItem("USER_DATA", JSON.stringify(user))
-    console.log("here")
-    this.autoLogin();
     const expirationDuration =
       new Date(data.expiry).getTime() -
       new Date().getTime();
     this.autoLogout(expirationDuration);
+    this.autoLogin();
   }
 
   logout() {
@@ -100,7 +113,7 @@ export class AuthService {
         createdDate: string,
         updatedDate: string,
         isDeleted: boolean,
-        defaultBusinessId:number,
+        defaultBusinessId: number,
         _token: string,
         _expiry: string
       } = JSON.parse(value);
@@ -108,7 +121,7 @@ export class AuthService {
         return;
       }
       const updated = data.updatedDate ? new Date(data.updatedDate) : null;
-      const laodeduser = new UserModel(data.id, data.firstName, data.lastName, data.email, new Date(data.createdDate), updated, data.isDeleted,data.defaultBusinessId, data._token, new Date(data._expiry));
+      const laodeduser = new UserModel(data.id, data.firstName, data.lastName, data.email, new Date(data.createdDate), updated, data.isDeleted, data.defaultBusinessId, data._token, new Date(data._expiry));
 
 
       this._user$.next(laodeduser);
@@ -116,9 +129,9 @@ export class AuthService {
       if (laodeduser.token) {
         console.log("auto login")
 
-        if(laodeduser.firstName && laodeduser.lastName && laodeduser.defaultBusinessId > 0){
+        if (laodeduser.firstName && laodeduser.lastName && laodeduser.defaultBusinessId > 0) {
           this.router.navigate(['/home']);
-        }else{
+        } else {
           this.router.navigate(['/onboard']);
         }
 
@@ -132,8 +145,42 @@ export class AuthService {
 
   autoLogout(expirationDuration: number) {
     console.log(expirationDuration)
-    // this.tokenExpirationTimer = setTimeout(() => {
-    //   this.logout();
-    // }, expirationDuration);
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, expirationDuration);
+  }
+
+  updateUserData(response: AuthResponse) {
+    const value = localStorage.getItem("USER_DATA");
+    if (value != null) {
+      const data: {
+        id: number,
+        firstName: string,
+        lastName: string,
+        email: string,
+        createdDate: string,
+        updatedDate: string,
+        isDeleted: boolean,
+        defaultBusinessId: number,
+        _token: string,
+        _expiry: string
+      } = JSON.parse(value);
+      if (!data) {
+        return;
+      }
+      const updated = data.updatedDate ? new Date(data.updatedDate) : null;
+      const loadeduser = new UserModel(data.id, data.firstName, data.lastName, data.email, new Date(data.createdDate), updated, data.isDeleted, data.defaultBusinessId, data._token, new Date(data._expiry));
+
+      loadeduser.updatedDate = response.updatedDate ? new Date(response.updatedDate) : null;
+      loadeduser.defaultBusinessId = response.defaultBusinessId;
+      loadeduser.email = response.email;
+      loadeduser.firstName = response.firstName;
+      loadeduser.lastName = response.lastName;
+      loadeduser.id = response.id;
+
+      this._user$.next(loadeduser);
+      localStorage.setItem("USER_DATA", JSON.stringify(loadeduser))
+      this.autoLogin();
+    }
   }
 }

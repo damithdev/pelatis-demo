@@ -27,7 +27,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { RouterStateSerializer, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthModule } from './auth/auth.module';
-import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { AuthService } from './auth/auth.service';
 import { RouterModule } from '@angular/router';
 import { OnboardingModule } from './modules/onboarding/onboarding.module';
