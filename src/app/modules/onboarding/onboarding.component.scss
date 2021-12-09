@@ -1,0 +1,28 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li div {
+    display: block;
+    text-align: center;
+    margin: 16px;
+    text-decoration: none;
+}
+
+.label-header-msg {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    text-align: right;
+
+    color: #65617d;
+}

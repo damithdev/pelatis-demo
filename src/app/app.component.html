@@ -1,7 +1,9 @@
-<div class="d-flex container-fluid" id="wrapper">
-    <app-navigation *ngIf="isLoggedIn$ | async"></app-navigation>
+
+<div class="d-flex container-fluid" style="padding: 0px;" id="wrapper">
+    
+    <app-navigation *ngIf="showNavigation$ | async"></app-navigation>
     <div class="container-fluid">
-        <app-navigation-toggle *ngIf="isLoggedIn$ | async"></app-navigation-toggle>
+        <app-navigation-toggle *ngIf="showNavigation$ | async"></app-navigation-toggle>
         <router-outlet></router-outlet>
     </div>
 </div>

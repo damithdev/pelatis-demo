@@ -1,0 +1,55 @@
+// Table
+
+.label-table-header {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    text-align: right;
+
+    color: #65617d;
+}
+
+.label-table-row-header {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+
+    color: #65617d;
+}
+
+.label-table-data-1 {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+    text-align: right;
+
+    color: #6c63ff;
+}
+
+table.table-border-style {
+    border: none;
+    border-collapse: collapse;
+
+    td {
+        border-bottom: 1px solid #E0E0E0;
+        padding-top: 1rem;
+
+        :first-child {
+            border-left: none;
+        }
+
+        :last-child {
+            border-right: none;
+        }
+    }
+
+    th {
+        border-bottom: 2px solid #e0e1e4;
+    }
+}

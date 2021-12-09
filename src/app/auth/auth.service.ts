@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { User } from '../shared/models/user.model';
+import { UserModel } from '../shared/models/user.model';
 // import { JwtHelperService } from '@auth0/angular-jwt';
 // const JwtHelper = new JwtHelperService();
 
@@ -16,6 +16,7 @@ export interface AuthResponse {
   createdDate: string,
   updatedDate: string,
   isDeleted: boolean,
+  defaultBusinessId: number,
   token: string,
   expiry: string
 
@@ -24,7 +25,7 @@ export interface AuthResponse {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  _user$ = new BehaviorSubject<User>(User.EMPTY());
+  _user$ = new BehaviorSubject<UserModel>(UserModel.EMPTY());
   private tokenExpirationTimer: any;
 
   constructor(private http: HttpClient, private router: Router) {
@@ -66,11 +67,11 @@ export class AuthService {
 
   handleAuthData(data: AuthResponse) {
     const updated = data.updatedDate ? new Date(data.updatedDate) : null;
-    const user = new User(data.id, data.firstName, data.lastName, data.email, new Date(data.createdDate), updated, data.isDeleted, data.token, new Date(data.expiry));
+    const user = new UserModel(data.id, data.firstName, data.lastName, data.email, new Date(data.createdDate), updated, data.isDeleted,data.defaultBusinessId, data.token, new Date(data.expiry));
     this._user$.next(user);
     localStorage.setItem("USER_DATA", JSON.stringify(user))
     console.log("here")
-    this.router.navigate(['/home']);
+    this.autoLogin();
     const expirationDuration =
       new Date(data.expiry).getTime() -
       new Date().getTime();
@@ -79,7 +80,7 @@ export class AuthService {
 
   logout() {
     console.log("logout")
-    this._user$.next(User.EMPTY());
+    this._user$.next(UserModel.EMPTY());
     localStorage.removeItem("USER_DATA");
     this.router.navigate(['/auth'])
     if (this.tokenExpirationTimer) {
@@ -99,6 +100,7 @@ export class AuthService {
         createdDate: string,
         updatedDate: string,
         isDeleted: boolean,
+        defaultBusinessId:number,
         _token: string,
         _expiry: string
       } = JSON.parse(value);
@@ -106,14 +108,20 @@ export class AuthService {
         return;
       }
       const updated = data.updatedDate ? new Date(data.updatedDate) : null;
-      const laodeduser = new User(data.id, data.firstName, data.lastName, data.email, new Date(data.createdDate), updated, data.isDeleted, data._token, new Date(data._expiry));
+      const laodeduser = new UserModel(data.id, data.firstName, data.lastName, data.email, new Date(data.createdDate), updated, data.isDeleted,data.defaultBusinessId, data._token, new Date(data._expiry));
 
 
       this._user$.next(laodeduser);
+
       if (laodeduser.token) {
         console.log("auto login")
 
-        this.router.navigate(['/home']);
+        if(laodeduser.firstName && laodeduser.lastName && laodeduser.defaultBusinessId > 0){
+          this.router.navigate(['/home']);
+        }else{
+          this.router.navigate(['/onboard']);
+        }
+
         const expirationDuration =
           new Date(data._expiry).getTime() -
           new Date().getTime();

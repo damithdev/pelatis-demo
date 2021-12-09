@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { MenuItem, MenuItemCategory } from 'src/app/shared/models/menu-item.model';
+import { MenuItemModel, MenuItemCategory } from 'src/app/shared/models/menu-item.model';
 import { NavigationMenuService } from 'src/app/shared/services/NavigationMenu.service';
 import * as fromActions from './actions';
 import * as fromReducers from './reducers';
@@ -24,23 +24,23 @@ export class BusinessDashboardFacade{
         this.navigationMenuService.renderMenu(MenuItemCategory.Home,this.menuItems);
     }
 
-    getCanDoItems():MenuItem[]{
+    getCanDoItems():MenuItemModel[]{
         return this.canDoItems;
     }
 
 
 
     menuItems = [
-        new MenuItem({name: 'Home',path:'#',icon:'ri-home-2-line'}),
-        new MenuItem({name: 'Sales',path:'#',icon:'ri-bank-card-line'}),
-        new MenuItem({name: 'Reports',path:'#',icon:'ri-pie-chart-2-line'}),
+        new MenuItemModel({name: 'Home',path:'#',icon:'ri-home-2-line'}),
+        new MenuItemModel({name: 'Sales',path:'#',icon:'ri-bank-card-line'}),
+        new MenuItemModel({name: 'Reports',path:'#',icon:'ri-pie-chart-2-line'}),
     ];
 
     canDoItems = [
-        new MenuItem({name: 'Add a customer',path:'#'}),
-        new MenuItem({name: 'Add a vendor',path:'#'}),
-        new MenuItem({name: 'Customize your invoices',path:'#'}),
-        new MenuItem({name: 'Invite a guest collaborator',path:'#'}),
+        new MenuItemModel({name: 'Add a customer',path:'#'}),
+        new MenuItemModel({name: 'Add a vendor',path:'#'}),
+        new MenuItemModel({name: 'Customize your invoices',path:'#'}),
+        new MenuItemModel({name: 'Invite a guest collaborator',path:'#'}),
     ];
 
     

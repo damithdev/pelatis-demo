@@ -1,21 +1,104 @@
 <!-- Sidebar -->
 <div class="bg-light border-right" id="sidebar-wrapper"
-    [ngStyle]="{'margin-left':(menuState | async) ?'0rem':'-25rem'}">
-    <div class="sidebar-heading" *ngIf="(menuCategory | async) === 'HOME'">HOME PAGE</div>
-    <div class="list-group list-group-flush" *ngFor="let item of menuItems | async">
+  [ngStyle]="{'margin-left':(menuState | async) ?'0rem':'-25rem'}">
+  <div class="row" style="padding: 0px;" *ngIf="(menuCategory | async) === 'HOME'">
+    <div class="btn-group btn-block ">
+      <button class="btn btn-block header-sidebar-wrapper" type="button" id="defaultDropdown" data-bs-toggle="dropdown"
+        data-bs-auto-close="true" aria-expanded="false">
+        <div class="row p-3">
+          <div class="col-2" style="text-align: left;">
+            <img width="20rem" src="assets/images/logo.png">
+          </div>
 
-        <a href="#" class="list-group-item list-group-item-action bg-light label-3-medium">
-            <div class="container">
-                <div class="row">
-                  <div class="col-sm-2">
-                    <i [ngClass]="item.icon" class="p-1 icon" style="font-size:2rem;"> </i>                  </div>
-                  <div class="col-sm" style="margin-top: .2rem;">
-                    {{item.name}}                  </div>
+          <div class="col-8" style="text-align: left;">
+            <div class="header-title">
+              Personal
+            </div>
+          </div>
+          <div class="col-1 float-right m-1">
+            <span class="dropdown-toggle "></span>
+          </div>
+        </div>
+      </button>
+      <ul class="dropdown-menu btn-block w-100 no-gutters" aria-labelledby="defaultDropdown">
+        <li>
+          <div class="">
+            <!-- Drop Down Item -->
+            <div class="row dropdown-menu-item-row">
+              <div class="col-10" style="text-align: center;">
+                <div class="header-title" style="text-align: left; margin-top: 5px;">
+                  Personal
                 </div>
               </div>
-        </a>
-    </div>
+              <div class="col-2">
+                <i class="ri-check-fill icon menu-icon" style="font-size: 2rem;"></i>
+              </div>
+            </div>
 
-    <a (click)="onLogoutClick()">Logout</a>
+            <div class="row dropdown-menu-item-row">
+              <div class="col">
+                <a class="link-item-menu">Create new business</a>
+
+              </div>
+
+            </div>
+            <hr>
+
+            <div class="row dropdown-menu-item-row">
+              <div class="col">
+                You're signed in as <br>
+                <b>damith@gmail.com</b>
+              </div>
+            </div>
+            <a href="#" class="link-item-menu">
+              <div class="row dropdown-menu-item-row">
+                <div class="col-10">
+                  <div class="link-item-menu">Manage your profile</div>
+                </div>
+                <div class="col-2">
+                  <i class="ri-user-settings-line menu-icon" style="font-size: 2rem;"></i>
+                </div>
+              </div>
+              <hr>
+            </a>
+
+
+            <a href="#" class="link-item-menu" (click)="onLogoutClick()">
+              <div class="row dropdown-menu-item-row mb-3">
+                <div class="col-10">
+                  <div class="link-item-menu">Sign out</div>
+                </div>
+                <div class="col-2">
+                  <i class="ri-logout-box-r-line menu-icon" style="font-size: 2rem;"></i>
+                </div>
+              </div>
+            </a>
+
+          </div>
+        </li>
+        <!-- <li><a class="dropdown-item" href="#">Menu item</a></li>
+        <li class="divider"></li>
+        <li><a class="dropdown-item" href="#">Menu item</a></li> -->
+      </ul>
+    </div>
+  </div>
+  <div class="pt-5">
+    <div class="list-group list-group-flush" *ngFor="let item of menuItems | async">
+
+      <a href="#" class="list-group-item list-group-item-action bg-light label-3-medium">
+        <div class="container">
+          <div class="row">
+            <div class="col-2">
+              <i [ngClass]="item.icon" class="p-1 icon" style="font-size:2rem;"> </i>
+            </div>
+            <div class="col-8" style="margin-top: .2rem;">
+              {{item.name}} </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+
 </div>
 <!-- /#page-content-wrapper -->

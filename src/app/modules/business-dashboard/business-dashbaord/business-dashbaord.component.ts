@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BarChartModel } from 'src/app/shared/models/bar-chart.model.ts';
 import { InvoiceDataModel } from 'src/app/shared/models/invoice-data.model';
-import { MenuItem } from 'src/app/shared/models/menu-item.model';
+import { MenuItemModel } from 'src/app/shared/models/menu-item.model';
 import { NetIncomeDataModel } from 'src/app/shared/models/net-inome-data.model';
 import { BusinessDashboardFacade } from '../store/business-dashboard-store.facade';
 
@@ -15,7 +15,7 @@ export class BusinessDashbaordComponent implements OnInit {
   cashFlowDataInit = BarChartModel.getEmpty();
   netIncomeDataInit = {"current":NetIncomeDataModel.getEmpty(""),"previous":NetIncomeDataModel.getEmpty("")}
 
-  canDoItems : MenuItem[] = [];
+  canDoItems : MenuItemModel[] = [];
   cashFlowData$!: Observable<BarChartModel>;
   netIncomeData$!: Observable<{"current":NetIncomeDataModel,"previous":NetIncomeDataModel}>;
   loading$!: Observable<boolean>;

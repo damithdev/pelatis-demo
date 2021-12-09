@@ -1,7 +1,7 @@
 import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-import { MenuItem, MenuItemCategory } from '../../models/menu-item.model';
+import { MenuItemModel, MenuItemCategory } from '../../models/menu-item.model';
 import { NavigationMenuService } from '../../services/NavigationMenu.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class NavigationComponent implements OnInit,OnDestroy,AfterContentInit {
 
 
   menuState: Observable<boolean> = new Observable<boolean>();
-  menuItems: Observable<MenuItem[]> = new Observable<MenuItem[]>();
+  menuItems: Observable<MenuItemModel[]> = new Observable<MenuItemModel[]>();
   menuCategory: Observable<MenuItemCategory> = new Observable<MenuItemCategory>();
 
   constructor(public navigationMenuService: NavigationMenuService, private authService: AuthService) {

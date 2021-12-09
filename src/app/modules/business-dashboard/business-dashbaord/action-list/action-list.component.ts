@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MenuItem } from 'src/app/shared/models/menu-item.model';
+import { MenuItemModel } from 'src/app/shared/models/menu-item.model';
 import { BusinessDashboardFacade } from '../../store/business-dashboard-store.facade';
 
 @Component({
@@ -9,7 +9,7 @@ import { BusinessDashboardFacade } from '../../store/business-dashboard-store.fa
 })
 export class ActionListComponent implements OnInit {
 
-  @Input() canDoItems: MenuItem[] = [];
+  @Input() canDoItems: MenuItemModel[] = [];
   ngOnInit(){
 
   }

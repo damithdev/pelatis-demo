@@ -19,7 +19,7 @@ export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
   error!: string | null;
   showPassword = false;
 
-  constructor(private elementRef: ElementRef,private authService: AuthService,private router:Router) { }
+  constructor(private elementRef: ElementRef,private authService: AuthService) { }
 
 
   ngAfterContentInit(): void {
@@ -88,7 +88,7 @@ export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
       },
       error => {
         console.log(error.error);
-        if(error.error != null){
+        if( !(error.error instanceof ProgressEvent) && error.error != null){
           this.error = error.error;
         }else{
           this.error = "An Error Occurred! "

@@ -38,5 +38,37 @@ body {
 .icon {
   position: relative;
   vertical-align: middle;
+}
 
+.menu-icon {
+  color:#7b61ff ;
+}
+
+
+.header-title {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.9rem;
+  
+    color: #535461;
+}
+
+.header-sidebar-wrapper {
+    background-color: #FBFBFF;
+    box-shadow: 1px 1px 1px 0px #E0E1E4;
+}
+
+.dropdown-menu-item-row{
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid #E0E1E4(0, 0, 0, 0.1);
 }

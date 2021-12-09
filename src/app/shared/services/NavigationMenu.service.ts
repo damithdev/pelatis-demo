@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { MenuItem, MenuItemCategory } from '../models/menu-item.model';
+import { MenuItemModel, MenuItemCategory } from '../models/menu-item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class NavigationMenuService {
   
   private menuToggleState = new BehaviorSubject<boolean>(true);
   private menuToggleButtonState = new BehaviorSubject<boolean>(true);
-  private menuItems = new BehaviorSubject<MenuItem[]>([]);
+  private menuItems = new BehaviorSubject<MenuItemModel[]>([]);
   private menuCategory = new BehaviorSubject<MenuItemCategory>(MenuItemCategory.Home);
 
   fixMenuVisibility(innerWidth:number){
@@ -42,7 +42,7 @@ export class NavigationMenuService {
     })
   }
 
-  renderMenu(category: MenuItemCategory, items: MenuItem[]){
+  renderMenu(category: MenuItemCategory, items: MenuItemModel[]){
     this.menuCategory.next(category);
     this.menuItems.next(items);
   }

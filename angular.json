@@ -44,17 +44,16 @@
               }
             ],
             "styles": [
-              "src/styles.scss",
-              "./src/assets/styles/theme.scss",
+              
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/remixicon/fonts/remixicon.css",
               "./node_modules/ngx-toastr/toastr.css",
-
+              "./src/scss/main.scss",
+              "src/styles.scss"
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "./node_modules/popper.js/dist/umd/popper.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {

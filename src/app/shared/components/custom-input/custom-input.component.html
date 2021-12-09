@@ -1,0 +1,8 @@
+<div class="form-floating">
+  <input type="text" id="text" class="form-control form-input-2" [ngModel]="value" (ngModelChange)="onChange($event)" (blur)="onTouched()">
+  <label for="text" class="input-label-2-regular">{{label}}</label>
+  <!-- <div class="invalid-feedback" *ngIf="onboardForm.submitted && text1.invalid"
+      style="position: relative; margin-top: -30;">
+      <p *ngIf="text1.errors">*Invalid</p>
+  </div> -->
+</div>

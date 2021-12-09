@@ -1,0 +1,71 @@
+<div class="row" style="box-shadow: 1px 1px 1px 0px #E0E1E4; height: 50px;">
+    <ul>
+        <li>
+            <div>
+                <img width="20rem" src="assets/images/logo.png">
+            </div>
+        </li>
+        <li>
+            <div class="label-header-msg">
+                Let's get started
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+<div class="container col-xs-12 col-md-6" style="max-width: 600px;">
+    <div>
+        <div class="text-center label-4-regular mt-4">
+            STEP 1 OF 2
+        </div>
+        <div class="text-center heading-6 mb-4 mt-4">
+            Welcome to Pelatis <span class="heading-5">👋</span>
+        </div>
+
+        <div class="text-center heading-7 mb-4 mt-4">
+            Tell us a bit about yourself
+        </div>
+        <div class="text-center paragraph-4-regular mb-4 mt-4">
+            We'll help you to get started quick based on your responses
+        </div>
+    </div>
+    <form #onboardForm="ngForm" (ngSubmit)="onboardForm.form.valid && onSubmit(onboardForm)" class="mt-5">
+        <!-- <div *ngIf="error" class="alert alert-danger alert-dismissible fade show border border-danger" role="alert">
+            <div class="label-7-regular text-danger">{{error}}</div>
+            <button type="button" class="btn-close text-danger" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div> -->
+
+        <ng-container [formGroup]="dynamicForm">
+            <ng-container *ngFor="let formField of dynamicFormFields">
+                <app-dynamic-form-field [formField]="formField"></app-dynamic-form-field>
+            </ng-container>
+        </ng-container>
+
+        <pre>
+            {{ dynamicForm.value | json }}
+            {{ dynamicForm.valid }}
+        </pre>
+
+        <div class="container">
+            <div class="row pt-5 mt-5">
+                <div class="col text-center">
+                    <button *ngIf="!isLoading; else loadingSpinnerBlock"
+                        class="btn btn-primary btn-lg btn-block w-100 submit-button-2" style="max-width: 350px;"
+                        role='button' type="submit">Action</button>
+
+                    <ng-template #loadingSpinnerBlock>
+                        <div class="text-center" style="height: 3rem">
+                            <app-loading-spinner></app-loading-spinner>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+
+
+</div>

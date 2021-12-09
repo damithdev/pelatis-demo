@@ -1,4 +1,4 @@
-export class MenuItem {
+export class MenuItemModel {
     public name: string;
     public path: string;
     public icon: string;

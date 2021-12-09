@@ -1,4 +1,4 @@
-export class User {
+export class UserModel {
     constructor(
         public id: number,
         public firstName: string,
@@ -7,6 +7,7 @@ export class User {
         public createdDate: Date | null,
         public updatedDate: Date | null,
         public isDeleted: boolean,
+        public defaultBusinessId : number,
         private _token: string,
         private _expiry: Date | null
     ){}
@@ -18,7 +19,9 @@ export class User {
         return this._token;
     }
 
-    static EMPTY() : User{
-        return new User(0,"","","",null,null,false,"",null);
+    static EMPTY() : UserModel
+{
+        return new UserModel
+    (0,"","","",null,null,false,0,"",null);
     }
 }

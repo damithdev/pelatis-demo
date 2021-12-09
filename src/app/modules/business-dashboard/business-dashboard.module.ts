@@ -26,10 +26,9 @@ import { effects } from './store/effects';
     BusinessDashbaordComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     RouterModule.forChild(BusinessDashboardRoutes),
     ChartsModule,
-    SharedModule,
     StoreModule.forFeature('businessDashboard',reducers),
     EffectsModule.forFeature(effects)
   ]

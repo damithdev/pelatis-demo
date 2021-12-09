@@ -1,0 +1,51 @@
+// Labels
+
+
+
+.label-1-regular {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.8rem;
+    color: #666666;
+}
+
+
+
+.label-2-regular {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.3rem;
+    line-height: 1.8rem;
+        text-align: left;
+
+    /* Text/subdued */
+
+    color: #666666;
+}
+
+.label-3-medium {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2rem;
+
+    display: flex;
+    align-items: center;
+
+    :hover {
+        color: #511FB7;
+    }
+}
+
+.label-4-regular {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.452rem;
+    color: #9AA2BB;
+}

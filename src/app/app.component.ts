@@ -13,7 +13,7 @@ export class AppComponent implements OnInit,OnDestroy{
   title = 'pelatis-demo';
 
   private authSub!: Subscription;
-  isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  showNavigation$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor(
     private translate: TranslateService,
     private configService: ConfigService,
@@ -29,12 +29,14 @@ export class AppComponent implements OnInit,OnDestroy{
   ngOnInit(): void {
     this.auth.autoLogin();
     this.authSub = this.auth.user.subscribe(user => {
-      if (user.token) {
+      if (user.token && user.firstName && user.lastName && user.defaultBusinessId) {
         console.log(user)
-        this.isLoggedIn$.next(true)
-        return;
+
+          this.showNavigation$.next(true)
+          return;
+
       }
-      this.isLoggedIn$.next(false);
+      this.showNavigation$.next(false);
     });
   }
   /**
