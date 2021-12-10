@@ -8,6 +8,7 @@ import { map, tap } from 'rxjs/operators';
 import { BusinessApiClientServiceService } from 'src/app/shared/data/BusinessApiClientService.service';
 import { Constants } from 'src/app/shared/utility/Constants';
 import { UserModel } from 'src/app/shared/models/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -105,7 +106,7 @@ export class OnboardingService {
     console.log(firstName + lastName)
 
     return this.http.post<AuthResponse>(
-      Constants.API_ENDPOINT+'AppUsers/onboard', {
+      environment.baseUrl+'AppUsers/onboard', {
       firstName: firstName,
       lastName: lastName,
       email: this.user?.email
@@ -121,7 +122,7 @@ export class OnboardingService {
 
   pushBusinessData(comapny:string,type:string,country:string,currency:string) {
     return this.http.post<BusinessModel>(
-      Constants.API_ENDPOINT+'Business/add', {
+      environment.baseUrl+'Business/add', {
         companyName: comapny,
         typeOfBusiness: type,
         country: country,

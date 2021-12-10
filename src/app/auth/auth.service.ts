@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { UserModel } from '../shared/models/user.model';
 import { Constants } from '../shared/utility/Constants';
 // import { JwtHelperService } from '@auth0/angular-jwt';
@@ -41,7 +42,7 @@ export class AuthService {
 
   signUp(email: string, password: string) {
     return this.http.post<AuthResponse>(
-      Constants.API_ENDPOINT+'Accounts/register', {
+      environment.baseUrl+'Accounts/register', {
       email: email,
       password: password
     }
@@ -54,7 +55,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http.post<AuthResponse>(
-      Constants.API_ENDPOINT+'Accounts/login', {
+      environment.baseUrl+'Accounts/login', {
       email: email,
       password: password
     }
@@ -69,7 +70,7 @@ export class AuthService {
   fetch() {
     console.log("fetch")
     return this.http.get<AuthResponse>(
-      Constants.API_ENDPOINT+'AppUsers/get'
+      environment.baseUrl+'AppUsers/get'
     ).pipe(
       tap(data => {
         this.updateUserData(data);

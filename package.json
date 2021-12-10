@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "start-prod":"npm run sy-pre-start & npm run sy-build & ng serve",
     "start": "npm run sy-pre-start & npm run sy-build &  ng serve",
     "lint": "ng lint",
     "test": "npm run sy-pre-test & ng test",
@@ -10,7 +11,8 @@
     "sy-pre-start": "node hooks/pre-start.js",
     "sy-pre-build": "node hooks/pre-build.js",
     "sy-post-build": "node hooks/post-build.js",
-    "sy-build": "npm run sy-pre-build & ng build & npm run sy-post-build"
+    "sy-build": "npm run sy-pre-build & ng build & npm run sy-post-build",
+    "sy-build-prod": "npm run sy-pre-build & ng build --prod & npm run sy-post-build"
   },
   "private": true,
   "dependencies": {
