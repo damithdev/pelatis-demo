@@ -1,7 +1,7 @@
 <!-- Sidebar -->
 <div class="bg-light border-right" id="sidebar-wrapper"
-  [ngStyle]="{'margin-left':(menuState | async) ?'0rem':'-25rem'}">
-  <div class="row" style="padding: 0px;" *ngIf="(menuCategory | async) === 'HOME'">
+  [ngStyle]="{'margin-left':(menuState$ | async) ?'0rem':'-25rem'}">
+  <div class="row" style="padding: 0px;" *ngIf="(menuCategory$ | async) === 'HOME'">
     <div class="btn-group btn-block ">
       <button class="btn btn-block header-sidebar-wrapper" type="button" id="defaultDropdown" data-bs-toggle="dropdown"
         data-bs-auto-close="true" aria-expanded="false">
@@ -47,7 +47,7 @@
             <div class="row dropdown-menu-item-row">
               <div class="col">
                 You're signed in as <br>
-                <b>damith@gmail.com</b>
+                <b>{{user.email}}</b>
               </div>
             </div>
             <a href="#" class="link-item-menu">
@@ -83,7 +83,7 @@
     </div>
   </div>
   <div class="pt-5">
-    <div class="list-group list-group-flush" *ngFor="let item of menuItems | async">
+    <div class="list-group list-group-flush" *ngFor="let item of menuItems$ | async">
 
       <a href="#" class="list-group-item list-group-item-action bg-light label-3-medium">
         <div class="container">

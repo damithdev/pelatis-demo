@@ -1,6 +1,6 @@
 <div #cashFlowChart>
-  <div class="p-2 heading-4-bold">Cashflow</div>
-  <div class="p-2 label-2-regular">Cash coming in and going out of your business</div>
+  <div class="p-2 heading-4">Cashflow</div>
+  <div class="p-2 label-2-regular mb-5">Cash coming in and going out of your business</div>
   <div class="chart-wrapper" *ngIf="!loading && cashFlowData != null;else otherContent">
     <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels"
       [options]="barChartOptions" [plugins]="barChartPlugins"
@@ -12,7 +12,7 @@
   </ng-template>
 </div>
 <div #netIncomeTable>
-  <div class="p-2 heading-4-bold">Net Income</div>
+  <div class="p-2 heading-4">Net Income</div>
   
   <table class="table table-border-style">
     <thead>

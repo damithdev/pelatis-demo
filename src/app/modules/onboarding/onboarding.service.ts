@@ -1,20 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DynamicFormFieldModel } from 'src/app/shared/components/dynamic-form-field/dynamic-form-field.model';
-import { OnboardModel } from 'src/app/shared/models/onboard.model';
 import { AuthResponse, AuthService } from 'src/app/auth/auth.service';
 import { BusinessModel } from 'src/app/shared/models/business.model';
 import { Validators } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
 import { BusinessApiClientServiceService } from 'src/app/shared/data/BusinessApiClientService.service';
 import { Constants } from 'src/app/shared/utility/Constants';
+import { UserModel } from 'src/app/shared/models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OnboardingService {
 
-  onboardData!: OnboardModel;
+  step!:number;
+  dynamicFormFields!: DynamicFormFieldModel[];
+  user!:UserModel;
+  business!:BusinessModel;
+  
   constructor(private http: HttpClient, private authService: AuthService,private businessService:BusinessApiClientServiceService) { }
 
   updateOnboardData(formData: DynamicFormFieldModel[]) {
@@ -27,14 +31,14 @@ export class OnboardingService {
 
   initializeFormData() {
     this.authService.user.subscribe(u => {
-      this.onboardData = new OnboardModel(0, [], u, null)
-      this.onboardData.user = u;
-      console.warn("here")
+      this.user = u;
+      console.log("user updated")
+      console.warn(u)
 
       if (u.firstName == null || u.lastName == null) {
-        console.log("here")
-        this.onboardData.step = 1;
-        this.onboardData.dynamicFormFields = [
+        console.log("user data")
+        this.step = 1;
+        this.dynamicFormFields = [
           {
             id: "firstName",
             label: "First Name",
@@ -49,10 +53,11 @@ export class OnboardingService {
             validators: [Validators.required]
           },
         ];
-      } else if (!u.defaultBusinessId) {
+      } else if (!u.defaultBusinessId || u.defaultBusinessId == 0) {
+        console.log("business data")
 
-        this.onboardData.step = 2;
-        this.onboardData.dynamicFormFields = [
+        this.step = 2;
+        this.dynamicFormFields = [
           {
             id: "companyName",
             label: "Comapny Name",
@@ -63,8 +68,9 @@ export class OnboardingService {
             label: "Type of Business",
             type: "select",
             selectMenuOptions: {
-              'item1': 'value1',
-              'item2': 'value2'
+              'health': 'Health and beauty',
+              'it': 'Web, Tech, IT',
+              'food': 'Restaurants & Foods'
             },
             validators: [Validators.required]
           },
@@ -73,8 +79,9 @@ export class OnboardingService {
             label: "Country",
             type: "select",
             selectMenuOptions: {
-              'item1': 'value1',
-              'item2': 'value2'
+              'LK': 'Sri Lanka',
+              'USA': 'United States',
+              'IRE': 'Ireland'
             },
             validators: []
           },
@@ -83,8 +90,9 @@ export class OnboardingService {
             label: "Business Currency",
             type: "select",
             selectMenuOptions: {
-              'item1': 'value1',
-              'item2': 'value2'
+              'LKR': 'LKR',
+              'USD': 'USD',
+              'EUR': 'EURO'
             },
             validators: []
           },
@@ -100,7 +108,7 @@ export class OnboardingService {
       Constants.API_ENDPOINT+'AppUsers/onboard', {
       firstName: firstName,
       lastName: lastName,
-      email: this.onboardData.user?.email
+      email: this.user?.email
     }
     ).pipe(
       tap(data => {

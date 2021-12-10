@@ -17,10 +17,10 @@
 <div class="container col-xs-12 col-md-6" style="max-width: 600px;">
     <div>
         <div class="text-center label-4-regular mt-4">
-            STEP {{onboardData.step}} OF 2
+            STEP {{step}} OF 2
         </div>
 
-        <ng-container [ngSwitch]="onboardData.step">
+        <ng-container [ngSwitch]="step">
             <ng-container *ngSwitchCase="'1'">
                 <div  class="text-center heading-6 mb-4 mt-4">
                     Welcome to Pelatis <span class="heading-5">🎉</span>
@@ -31,7 +31,7 @@
             </ng-container>
             <ng-container *ngSwitchCase="'2'">
                 <div *ngSwitchCase="'2'" class="text-center heading-6 mb-4 mt-4">
-                    Hey {{onboardData.user.firstName}} <span class="heading-5">👋</span>
+                    Hey {{user.firstName}} <span class="heading-5">👋</span>
                 </div>
                 <div  class="text-center heading-7 mb-4 mt-4">
                     Tell us a bit about your business
@@ -59,10 +59,10 @@
             </ng-container>
         </ng-container>
 
-        <pre>
+        <!-- <pre>
             {{ dynamicForm.value | json }}
             {{ dynamicForm.valid }}
-        </pre>
+        </pre> -->
 
         <div class="container">
             <div class="row pt-5 mt-5">

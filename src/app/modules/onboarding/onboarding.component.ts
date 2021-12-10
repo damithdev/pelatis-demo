@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AuthResponse, AuthService } from 'src/app/auth/auth.service';
 import { DynamicFormFieldModel } from 'src/app/shared/components/dynamic-form-field/dynamic-form-field.model';
 import { BusinessModel } from 'src/app/shared/models/business.model';
-import { OnboardModel } from 'src/app/shared/models/onboard.model';
+import { UserModel } from 'src/app/shared/models/user.model';
 import { OnboardingService } from './onboarding.service';
 
 @Component({
@@ -20,20 +20,27 @@ export class OnboardingComponent implements OnInit {
   error!: string | null;
   isLoading = false;
 
-  onboardData!: OnboardModel;
-
-  constructor(private formBuilder: FormBuilder,private service: OnboardingService,private authService:AuthService) { }
+  step!: number;
+  user!: UserModel;
+  business!: BusinessModel;
+  constructor(private formBuilder: FormBuilder, private service: OnboardingService, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.dynamicForm = this.formBuilder.group({});
     this.service.initializeFormData();
-    this.dynamicFormFields = this.service.onboardData.dynamicFormFields;
-    this.onboardData = this.service.onboardData;
+    this.buildForm();
+  }
+
+  buildForm(){
+    this.dynamicForm = this.formBuilder.group({});
+    this.dynamicFormFields = this.service.dynamicFormFields;
+    this.step = this.service.step;
+    this.user = this.service.user;
+    this.business = this.service.business;
+
     this.dynamicFormFields.forEach(formField => {
-      const fromControl = this.formBuilder.control(formField.value,formField.validators);
-      this.dynamicForm.addControl(formField.id,fromControl)
+      const fromControl = this.formBuilder.control(formField.value, formField.validators);
+      this.dynamicForm.addControl(formField.id, fromControl)
     });
-    console.log(this.onboardData)
 
   }
 
@@ -45,45 +52,49 @@ export class OnboardingComponent implements OnInit {
     }
     console.log("sunbmitting")
 
-    if(this.onboardData.step == 1){
+    if (this.step == 1) {
       this.isLoading = true;
-      let onboardObs : Observable<AuthResponse>;
+      let onboardObs: Observable<AuthResponse>;
 
-  
+
       const value = this.dynamicForm.value;
-      onboardObs = this.service.pushUserData(value.firstName,value.lastName);
+      onboardObs = this.service.pushUserData(value.firstName, value.lastName);
 
       onboardObs.subscribe(
         data => {
           this.isLoading = false;
+          this.buildForm();
+
         },
         error => {
           console.log(error.error);
-          if( !(error.error instanceof ProgressEvent) && error.error != null){
+          if (!(error.error instanceof ProgressEvent) && error.error != null) {
             this.error = error.error;
-          }else{
+          } else {
             this.error = "An Error Occurred! "
           }
           this.isLoading = false;
         }
       );
-    }else if(this.onboardData.step == 2){
+    } else if (this.step == 2) {
       this.isLoading = true;
-      let onboardObs : Observable<BusinessModel>;
+      let onboardObs: Observable<BusinessModel>;
       const value = this.dynamicForm.value;
 
-      onboardObs = this.service.pushBusinessData(value.companyName,value.typeOfBusiness,value.country,value.currency);
+      onboardObs = this.service.pushBusinessData(value.companyName, value.typeOfBusiness, value.country, value.currency);
 
-  
+
       onboardObs.subscribe(
         data => {
           this.isLoading = false;
+          this.buildForm();
+
         },
         error => {
           console.log(error.error);
-          if( !(error.error instanceof ProgressEvent) && error.error != null){
+          if (!(error.error instanceof ProgressEvent) && error.error != null) {
             this.error = error.error;
-          }else{
+          } else {
             this.error = "An Error Occurred! "
           }
           this.isLoading = false;
@@ -91,7 +102,7 @@ export class OnboardingComponent implements OnInit {
       );
     }
 
-    
+
   }
 
 }

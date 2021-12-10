@@ -72,14 +72,15 @@ export class AuthService {
       Constants.API_ENDPOINT+'AppUsers/get'
     ).pipe(
       tap(data => {
-        console.log(data)
-        this.handleAuthData(data);
+        this.updateUserData(data);
       })
     );
   }
 
 
   handleAuthData(data: AuthResponse) {
+    console.warn("handle auth data")
+    console.warn(data)
     const updated = data.updatedDate ? new Date(data.updatedDate) : null;
     const user = new UserModel(data.id, data.firstName, data.lastName, data.email, new Date(data.createdDate), updated, data.isDeleted, data.defaultBusinessId, data.token, new Date(data.expiry));
     this._user$.next(user);
@@ -130,8 +131,13 @@ export class AuthService {
         console.log("auto login")
 
         if (laodeduser.firstName && laodeduser.lastName && laodeduser.defaultBusinessId > 0) {
+          console.log("auto home")
+
           this.router.navigate(['/home']);
         } else {
+          console.log(laodeduser)
+          console.log("auto onboard")
+
           this.router.navigate(['/onboard']);
         }
 

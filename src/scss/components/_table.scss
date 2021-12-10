@@ -14,7 +14,7 @@
 .label-table-row-header {
     font-family: 'Inter', sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 1.6rem;
     line-height: 1.9rem;
 
@@ -38,7 +38,8 @@ table.table-border-style {
 
     td {
         border-bottom: 1px solid #E0E0E0;
-        padding-top: 1rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
 
         :first-child {
             border-left: none;
@@ -51,5 +52,6 @@ table.table-border-style {
 
     th {
         border-bottom: 2px solid #e0e1e4;
+        padding-bottom: 1rem;
     }
 }

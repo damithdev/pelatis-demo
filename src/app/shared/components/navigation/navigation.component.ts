@@ -2,6 +2,7 @@ import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { MenuItemModel, MenuItemCategory } from '../../models/menu-item.model';
+import { UserModel } from '../../models/user.model';
 import { NavigationMenuService } from '../../services/NavigationMenu.service';
 
 @Component({
@@ -12,10 +13,10 @@ import { NavigationMenuService } from '../../services/NavigationMenu.service';
 export class NavigationComponent implements OnInit,OnDestroy,AfterContentInit {
 
 
-
-  menuState: Observable<boolean> = new Observable<boolean>();
-  menuItems: Observable<MenuItemModel[]> = new Observable<MenuItemModel[]>();
-  menuCategory: Observable<MenuItemCategory> = new Observable<MenuItemCategory>();
+  user!: UserModel;
+  menuState$: Observable<boolean> = new Observable<boolean>();
+  menuItems$: Observable<MenuItemModel[]> = new Observable<MenuItemModel[]>();
+  menuCategory$: Observable<MenuItemCategory> = new Observable<MenuItemCategory>();
 
   constructor(public navigationMenuService: NavigationMenuService, private authService: AuthService) {
   }
@@ -25,13 +26,16 @@ export class NavigationComponent implements OnInit,OnDestroy,AfterContentInit {
   }
 
   ngOnInit() {
-    this.menuState = this.navigationMenuService.getMenuToggleState();
+    this.menuState$ = this.navigationMenuService.getMenuToggleState();
+    this.authService.user.subscribe(u => {
+      this.user = u;
+    });
   }
 
   ngAfterContentInit(): void {
     setTimeout(() =>{
-      this.menuCategory = this.navigationMenuService.getMenuCategory();
-      this.menuItems = this.navigationMenuService.getMenuItems();  
+      this.menuCategory$ = this.navigationMenuService.getMenuCategory();
+      this.menuItems$ = this.navigationMenuService.getMenuItems();  
     });
   }
 
