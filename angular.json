@@ -44,7 +44,6 @@
               }
             ],
             "styles": [
-              
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/remixicon/fonts/remixicon.css",
               "./node_modules/ngx-toastr/toastr.css",
@@ -53,8 +52,10 @@
             ],
             "scripts": [
               "./node_modules/jquery/dist/jquery.min.js",
-              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ]
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "./node_modules/chart.js/dist/Chart.min.js"
+            ],
+            "allowedCommonJsDependencies": ["chart.js"]
           },
           "configurations": {
             "production": {
