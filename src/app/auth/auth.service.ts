@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 // import { ValidationService } from '@shared/utility';
-import { Router } from '@angular/router';
+import { NavigationStart, Router } from '@angular/router';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -42,7 +42,7 @@ export class AuthService {
 
   signUp(email: string, password: string) {
     return this.http.post<AuthResponse>(
-      environment.baseUrl+'Accounts/register', {
+      environment.baseUrl + 'Accounts/register', {
       email: email,
       password: password
     }
@@ -55,7 +55,7 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http.post<AuthResponse>(
-      environment.baseUrl+'Accounts/login', {
+      environment.baseUrl + 'Accounts/login', {
       email: email,
       password: password
     }
@@ -70,7 +70,7 @@ export class AuthService {
   fetch() {
     console.log("fetch")
     return this.http.get<AuthResponse>(
-      environment.baseUrl+'AppUsers/get'
+      environment.baseUrl + 'AppUsers/get'
     ).pipe(
       tap(data => {
         this.updateUserData(data);
@@ -90,7 +90,7 @@ export class AuthService {
       new Date(data.expiry).getTime() -
       new Date().getTime();
     this.autoLogout(expirationDuration);
-    this.autoLogin();
+    this.autoLogin("auth");
   }
 
   logout() {
@@ -104,7 +104,7 @@ export class AuthService {
     this.tokenExpirationTimer = null;
   }
 
-  autoLogin() {
+  autoLogin(route: String) {
     const value = localStorage.getItem("USER_DATA");
     if (value != null) {
       const data: {
@@ -133,8 +133,19 @@ export class AuthService {
 
         if (laodeduser.firstName && laodeduser.lastName && laodeduser.defaultBusinessId > 0) {
           console.log("auto home")
+          
+          let sub = this.router.events.subscribe(event => {
+            if (event instanceof NavigationStart) {
+              console.warn(event.url)
+              if (event.url == "/auth") {
+                this.router.navigate(['/home']);
+              }
+              sub.unsubscribe()
+            }
+          });
 
-          this.router.navigate(['/home']);
+          
+
         } else {
           console.log(laodeduser)
           console.log("auto onboard")
@@ -187,7 +198,7 @@ export class AuthService {
 
       this._user$.next(loadeduser);
       localStorage.setItem("USER_DATA", JSON.stringify(loadeduser))
-      this.autoLogin();
+      this.autoLogin("");
     }
   }
 }

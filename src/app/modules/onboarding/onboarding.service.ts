@@ -18,17 +18,9 @@ export class OnboardingService {
   step!:number;
   dynamicFormFields!: DynamicFormFieldModel[];
   user!:UserModel;
-  business!:BusinessModel;
+  // business!:BusinessModel;
   
   constructor(private http: HttpClient, private authService: AuthService,private businessService:BusinessApiClientServiceService) { }
-
-  updateOnboardData(formData: DynamicFormFieldModel[]) {
-
-  }
-
-  getFormFields() {
-
-  }
 
   initializeFormData() {
     this.authService.user.subscribe(u => {

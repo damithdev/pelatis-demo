@@ -12,7 +12,6 @@
 .form-input-2 {
     margin-top: 1rem;
     height: 5rem !important;
-    padding: 1rem;
     font-family: "Inter", "sans-serif";
     font-size: 1.5rem;
     line-height: 1.8rem;
@@ -28,6 +27,19 @@
 }
 
 .input-label-2-regular {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    text-align: left;
+
+    /* Text/subdued */
+
+    color: #666666;
+}
+
+.input-label-3-regular {
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;

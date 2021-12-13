@@ -27,7 +27,7 @@ export class AppComponent implements OnInit,OnDestroy{
     this.authSub.unsubscribe();
   }
   ngOnInit(): void {
-    this.auth.autoLogin();
+    this.auth.autoLogin("");
     this.authSub = this.auth.user.subscribe(user => {
       if (user.token && user.firstName && user.lastName && user.defaultBusinessId) {
         console.log(user)

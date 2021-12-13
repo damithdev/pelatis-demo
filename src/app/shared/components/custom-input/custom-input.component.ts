@@ -18,6 +18,7 @@ import { DynamicFormFieldModel } from '../dynamic-form-field/dynamic-form-field.
 export class CustomInputComponent implements OnInit ,ControlValueAccessor{
 
   @Input() label!: string;
+  @Input() controlId!: string;
   value!:string;
 
   onChange!: (value:string) => void;

@@ -7,7 +7,7 @@
  */
 html {
     box-sizing: border-box;
-    font-size: 10px;
+    font-size: 10px !important;
 }
 
 /**
@@ -31,7 +31,7 @@ a {
 }
 
 a:hover{
-    color: #3e1296;
+    color: #512eff;
 }
 
 

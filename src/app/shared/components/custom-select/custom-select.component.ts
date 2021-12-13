@@ -17,6 +17,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR, ValidatorFn } from '@angular/f
 export class CustomSelectComponent implements OnInit ,ControlValueAccessor{
 
   @Input() label!: string;
+  @Input() controlId!: string;
   @Input() selectMenuOptions?: {[key:string]:string};
   value?:string;
   validators?: ValidatorFn[];
@@ -30,7 +31,11 @@ export class CustomSelectComponent implements OnInit ,ControlValueAccessor{
     this.value = obj;
   }
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+    // this.onChange = fn;
+    this.onChange = (val) => {
+      this.value = val;
+      fn(val);
+    }
   }
   registerOnTouched(fn: any): void {
     this.onTouched = fn;

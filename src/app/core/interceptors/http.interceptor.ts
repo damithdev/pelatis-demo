@@ -27,7 +27,7 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                             errorMessage = `Error: ${error.message}`;
                         } else if (returnedError instanceof HttpErrorResponse) {
                             let error: HttpErrorResponse = returnedError;
-                            errorMessage = "Error Status " + error.status + ":" + error.statusText;
+                            errorMessage = "Error " + error.status + ":" + error.statusText;
                             handled = this.handleServerSideError(error);
                         }
         
@@ -40,16 +40,15 @@ export class CustomHttpInterceptor implements HttpInterceptor {
                                 return throwError("Unexpected problem occurred");
                             }
                         } else {
-                            return of(returnedError);
+                            return throwError(errorMessage);
+                            // let val = of(returnedError);
+                            // console.log(val)
+                            // return val;
                         }
                     })
                 ); 
             }
         ));
-
-
-
-
     }
 
     handleAuthHeader(req: HttpRequest<any>): Observable<HttpRequest<any>> {

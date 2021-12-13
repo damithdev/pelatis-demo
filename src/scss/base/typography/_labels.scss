@@ -36,10 +36,11 @@
     display: flex;
     align-items: center;
 
-    :hover {
-        color: #511FB7;
+    :hover * {
+        color: #7b61ff;
     }
 }
+
 
 .label-4-regular {
     font-family: 'Inter', sans-serif;
@@ -49,3 +50,33 @@
     line-height: 1.452rem;
     color: #9AA2BB;
 }
+
+// .label-5-regular {
+//     font-family: 'Inter', sans-serif;
+//     font-style: normal;
+//     font-weight: 500;
+//     font-size: 1.4rem;
+//     line-height: 2rem;
+//     color: #9AA2BB;
+
+//     :hover * {
+//         background-color: rgba(110, 65, 226, 0.16);
+//     }
+// }
+
+.label-4-medium {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    color:  #6E41E2;
+
+    // display: flex;
+    // align-items: center;
+
+    :hover * {
+        color: #7b61ff;
+    }
+}
+

@@ -30,6 +30,7 @@ import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { RouterModule } from '@angular/router';
 import { OnboardingModule } from './modules/onboarding/onboarding.module';
+import { BusinessDetailsModule } from './modules/business-details/business-details.module';
 
 
 ///// Other
@@ -57,6 +58,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     /** App Dependencies */
     RouterModule.forRoot(AppRoutes),
     BusinessDashboardModule,
+    BusinessDetailsModule,
     OnboardingModule,
     SharedModule,
     CoreModule,

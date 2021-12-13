@@ -1,8 +1,8 @@
 <div class="form-floating" >
-  <select class="form-select form-input-2" id="dynamicSelect" aria-label="Floating label select" [ngModel]="value" (ngModelChange)="onChange($event)" (blur)="onTouched()">
-      <option selected [ngValue]="null" disabled>{{label}}</option>
+  <select class="form-select form-input-2" [ngClass]="{'pt-3' : value == null}" id="{{controlId}}" aria-label="Floating label select" [ngModel]="value" (ngModelChange)="onChange($event)" (blur)="onTouched()">
+      <option selected [ngValue]="null" disabled  class="input-label-2-regular">{{label}}</option>
       <option [ngValue]="menuOption.key" *ngFor="let menuOption of selectMenuOptions | keyvalue">
           {{menuOption.value}}</option>
   </select>
-  <label for="dynamicSelect" class="input-label-2-regular">{{label}}</label>
+  <label for="{{controlId}}" class="input-label-2-regular" *ngIf="value != null">{{label}}</label>
 </div>

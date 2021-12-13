@@ -1,6 +1,7 @@
-import { AfterContentInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterContentInit, Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Colors } from 'src/constants/colors.constants';
 import { MenuItemModel, MenuItemCategory } from '../../models/menu-item.model';
 import { UserModel } from '../../models/user.model';
 import { NavigationMenuService } from '../../services/NavigationMenu.service';
@@ -18,7 +19,7 @@ export class NavigationComponent implements OnInit,OnDestroy,AfterContentInit {
   menuItems$: Observable<MenuItemModel[]> = new Observable<MenuItemModel[]>();
   menuCategory$: Observable<MenuItemCategory> = new Observable<MenuItemCategory>();
 
-  constructor(public navigationMenuService: NavigationMenuService, private authService: AuthService) {
+  constructor(public navigationMenuService: NavigationMenuService, private authService: AuthService,private elementRef:ElementRef) {
   }
 
   ngOnDestroy(): void {
@@ -35,7 +36,8 @@ export class NavigationComponent implements OnInit,OnDestroy,AfterContentInit {
   ngAfterContentInit(): void {
     setTimeout(() =>{
       this.menuCategory$ = this.navigationMenuService.getMenuCategory();
-      this.menuItems$ = this.navigationMenuService.getMenuItems();  
+      this.menuItems$ = this.navigationMenuService.getMenuItems();
+
     });
   }
 

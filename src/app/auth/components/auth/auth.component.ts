@@ -1,8 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { AfterContentInit, AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Colors } from 'src/constants/colors.constants';
+import { SubSink } from 'subsink';
 import { AuthResponse, AuthService } from '../../auth.service';
 
 @Component({
@@ -11,6 +13,8 @@ import { AuthResponse, AuthService } from '../../auth.service';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
+
+  private subs = new SubSink();
 
   
   pelatisBottomLogoAboslute = true;
@@ -31,6 +35,7 @@ export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.subs.unsubscribe();
   }
 
   onSwitchMode() {
@@ -82,17 +87,18 @@ export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
       authObs = this.authService.signUp(email,pass);
     }
 
-    authObs.subscribe(
+    
+
+    this.subs.sink = authObs.subscribe(
       data => {
         this.isLoading = false;
       },
       error => {
-        console.log(error.error);
-        if( !(error.error instanceof ProgressEvent) && error.error != null){
-          this.error = error.error;
-        }else{
-          this.error = "An Error Occurred! "
-        }
+        console.warn(error.constructor.name);
+        
+
+
+        this.error = error;
         this.isLoading = false;
       }
     );

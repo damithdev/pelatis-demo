@@ -22,7 +22,6 @@ export class OnboardingComponent implements OnInit {
 
   step!: number;
   user!: UserModel;
-  business!: BusinessModel;
   constructor(private formBuilder: FormBuilder, private service: OnboardingService, private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -35,7 +34,6 @@ export class OnboardingComponent implements OnInit {
     this.dynamicFormFields = this.service.dynamicFormFields;
     this.step = this.service.step;
     this.user = this.service.user;
-    this.business = this.service.business;
 
     this.dynamicFormFields.forEach(formField => {
       const fromControl = this.formBuilder.control(formField.value, formField.validators);

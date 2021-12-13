@@ -10,10 +10,10 @@ export class NavigationMenuService {
 
   constructor() { }
   
-  private menuToggleState = new BehaviorSubject<boolean>(true);
-  private menuToggleButtonState = new BehaviorSubject<boolean>(true);
-  private menuItems = new BehaviorSubject<MenuItemModel[]>([]);
-  private menuCategory = new BehaviorSubject<MenuItemCategory>(MenuItemCategory.Home);
+  private _menuToggleState$ = new BehaviorSubject<boolean>(true);
+  private _menuToggleButtonState$ = new BehaviorSubject<boolean>(true);
+  private _menuItems$ = new BehaviorSubject<MenuItemModel[]>([]);
+  private _menuCategory$ = new BehaviorSubject<MenuItemCategory>(MenuItemCategory.Home);
 
   fixMenuVisibility(innerWidth:number){
     this.changeMenuToggleState(innerWidth>768);
@@ -21,37 +21,39 @@ export class NavigationMenuService {
   }
 
   changeMenuToggleState(state:boolean){
-    this.menuToggleState.next(state);
+    this._menuToggleState$.next(state);
   }
 
   changeMenuToggleButtonState(state:boolean){
-    this.menuToggleButtonState.next(state);
+    this._menuToggleButtonState$.next(state);
   }
 
   getMenuToggleButtonState(){
-    return this.menuToggleButtonState.asObservable();
+    return this._menuToggleButtonState$.asObservable();
   }
 
   getMenuToggleState(){
-    return this.menuToggleState.asObservable();
+    return this._menuToggleState$.asObservable();
   }
 
   flipMenuToggleState(){    
-    this.menuToggleState.asObservable().pipe(take(1)).subscribe(value => {
+    this._menuToggleState$.asObservable().pipe(take(1)).subscribe(value => {
       this.changeMenuToggleState(!value)
     })
   }
 
   renderMenu(category: MenuItemCategory, items: MenuItemModel[]){
-    this.menuCategory.next(category);
-    this.menuItems.next(items);
+    setTimeout(() =>{
+      this._menuCategory$.next(category);
+      this._menuItems$.next(items);
+    });
   }
 
   getMenuCategory(){
-    return this.menuCategory.asObservable();
+    return this._menuCategory$.asObservable();
   }
 
   getMenuItems(){
-    return this.menuItems.asObservable();
+    return this._menuItems$.asObservable();
   }
 }

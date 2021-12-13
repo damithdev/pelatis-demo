@@ -13,6 +13,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { effects } from './store/effects';
+import { BusinessDashboardFacade } from './store/business-dashboard-store.facade';
 
 
 
@@ -31,6 +32,9 @@ import { effects } from './store/effects';
     ChartsModule,
     StoreModule.forFeature('businessDashboard',reducers),
     EffectsModule.forFeature(effects)
+  ],
+  providers: [
+    BusinessDashboardFacade
   ]
 })
 export class BusinessDashboardModule { }

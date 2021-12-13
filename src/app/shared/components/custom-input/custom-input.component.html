@@ -1,8 +1,12 @@
-<div class="form-floating">
-  <input type="text" id="text" class="form-control form-input-2" [ngModel]="value" (ngModelChange)="onChange($event)" (blur)="onTouched()">
-  <label for="text" class="input-label-2-regular">{{label}}</label>
+<div class="form-floating mt-3 mb-3">
+  <!-- <input type="text" id="{{controlId}}" class="form-control form-input-2" [ngModel]="value" (ngModelChange)="onChange($event)" (blur)="onTouched()">
+  <label for="{{controlId}}" class="input-label-2-regular">{{label}}</label> -->
   <!-- <div class="invalid-feedback" *ngIf="onboardForm.submitted && text1.invalid"
       style="position: relative; margin-top: -30;">
       <p *ngIf="text1.errors">*Invalid</p>
   </div> -->
+
+  <input type="text" class="form-control form-input-2" id="{{controlId}}" placeholder="Please Fill" [ngModel]="value" (ngModelChange)="onChange($event)" (blur)="onTouched()">
+  <label for="{{controlId}}" class="input-label-3-regular">{{label}}</label>
 </div>
+

@@ -8,11 +8,13 @@ import * as fromReducers from './reducers';
 import * as fromSelectors from './selectors';
 
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class BusinessDashboardFacade{
+    
     loading$ = this.store.pipe(select(fromSelectors.getLoading));
     cashFlowData$ = this.store.pipe(select(fromSelectors.getCashFlowData));
     netIncomeData$ = this.store.pipe(select(fromSelectors.getNetIncomeData));
+
     constructor(public navigationMenuService:NavigationMenuService,private store: Store<fromReducers.BusinessDashbaordState>) {}
 
 
@@ -21,22 +23,22 @@ export class BusinessDashboardFacade{
     }
 
     loadMenuItems(){
-        this.navigationMenuService.renderMenu(MenuItemCategory.Home,this.menuItems);
+        this.navigationMenuService.renderMenu(MenuItemCategory.Home,this._menuItems);
     }
 
     getCanDoItems():MenuItemModel[]{
-        return this.canDoItems;
+        return this._canDoItems;
     }
 
 
 
-    menuItems = [
+    private _menuItems = [
         new MenuItemModel({name: 'Home',path:'#',icon:'ri-home-2-line'}),
         new MenuItemModel({name: 'Sales',path:'#',icon:'ri-bank-card-line'}),
         new MenuItemModel({name: 'Reports',path:'#',icon:'ri-pie-chart-2-line'}),
     ];
 
-    canDoItems = [
+    private _canDoItems = [
         new MenuItemModel({name: 'Add a customer',path:'#'}),
         new MenuItemModel({name: 'Add a vendor',path:'#'}),
         new MenuItemModel({name: 'Customize your invoices',path:'#'}),

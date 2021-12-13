@@ -1,6 +1,6 @@
 <ng-container [formGroup]="form">
     <ng-container [ngSwitch]="formField.type">
-        <app-custom-input *ngSwitchCase="'text'" [label]="formField.label" [formControlName]="formField.id" ></app-custom-input>
-        <app-custom-select *ngSwitchCase="'select'" [label]="formField.label" [formControlName]="formField.id" [selectMenuOptions]="formField.selectMenuOptions"></app-custom-select>
+        <app-custom-input *ngSwitchCase="'text'" [label]="formField.label" [formControlName]="formField.id" [controlId]="formField.id" ></app-custom-input>
+        <app-custom-select *ngSwitchCase="'select'" [label]="formField.label" [formControlName]="formField.id" [controlId]="formField.id" [selectMenuOptions]="formField.selectMenuOptions"></app-custom-select>
     </ng-container>
 </ng-container>
