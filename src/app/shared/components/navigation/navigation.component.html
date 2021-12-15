@@ -1,9 +1,12 @@
 <!-- Sidebar -->
-<div class="bg-light border-right" id="sidebar-wrapper" style="background-color: transparent !important;"
-  [ngStyle]="{'margin-left':(menuState$ | async) ?'0rem':'-25rem'}">
 
-  <!-- MAIN menu -->
-  <ng-container *ngIf="(menuCategory$ | async) === 'HOME'; else setting">
+
+<!-- MAIN menu -->
+<ng-container *ngIf="(menuCategory$ | async) === 'HOME'; else setting">
+
+  <div class="bg-light border-right" id="sidebar-wrapper"
+    [ngStyle]="{'margin-left':(menuState$ | async) ?'0rem':'-25rem'}">
+
     <div class="row" style="padding: 0px;">
       <div class="btn-group btn-block ">
         <button class="btn btn-block header-sidebar-wrapper" type="button" id="defaultDropdown"
@@ -80,8 +83,8 @@
             </div>
           </li>
           <!-- <li><a class="dropdown-item" href="#">Menu item</a></li>
-          <li class="divider"></li>
-          <li><a class="dropdown-item" href="#">Menu item</a></li> -->
+            <li class="divider"></li>
+            <li><a class="dropdown-item" href="#">Menu item</a></li> -->
         </ul>
       </div>
     </div>
@@ -89,7 +92,7 @@
 
     <div class="pt-5">
       <div class="list-group list-group-flush" *ngFor="let item of menuItems$ | async">
-  
+
         <a href="#" class="list-group-item list-group-item-action bg-light label-3-medium">
           <div class="container">
             <div class="row mt-2 w-100">
@@ -103,11 +106,15 @@
         </a>
       </div>
     </div>
-  </ng-container>
+  </div>
+
+</ng-container>
 
 
-  <!-- SETTING Menu -->
-  <ng-template #setting>
+<!-- SETTING Menu -->
+<ng-template #setting>
+  <div class="bg-light border-right" id="sidebar-wrapper"
+    [ngStyle]="{'margin-left':(menuState$ | async) ?'0rem':'-25rem'}" style="background-color: transparent !important; ">
     <ng-container *ngIf="(menuCategory$ | async) === 'SETTINGS'; else none">
 
 
@@ -129,7 +136,7 @@
 
       <div class="pt-5">
         <div class="list-group list-group-flush" *ngFor="let item of menuItems$ | async">
-    
+
           <button type="button" class="btn side-navbar-button label-5-regular">
             <div class="container">
               <div class="row w-100">
@@ -143,14 +150,12 @@
         </div>
       </div>
     </ng-container>
-  </ng-template>
+  </div>
+</ng-template>
 
-  <!-- UNKNOWN -->
-  <ng-template #none>
+<!-- UNKNOWN -->
+<ng-template #none>
 
-  </ng-template>
+</ng-template>
 
-
-
-</div>
 <!-- /#page-content-wrapper -->

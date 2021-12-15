@@ -27,7 +27,7 @@ export class AuthComponent implements OnInit, AfterContentInit,OnDestroy {
 
 
   ngAfterContentInit(): void {
-    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = Colors.backgroundBlueGray;
+    // this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = Colors.backgroundBlueGray;
   }
 
   ngOnInit(): void {

@@ -133,18 +133,25 @@ export class AuthService {
 
         if (laodeduser.firstName && laodeduser.lastName && laodeduser.defaultBusinessId > 0) {
           console.log("auto home")
-          
-          let sub = this.router.events.subscribe(event => {
-            if (event instanceof NavigationStart) {
-              console.warn(event.url)
-              if (event.url == "/auth") {
-                this.router.navigate(['/home']);
-              }
-              sub.unsubscribe()
-            }
-          });
 
-          
+          if (route === "auth") {
+            this.router.navigate(['/home']);
+          } else {
+            let sub = this.router.events.subscribe(event => {
+              if (event instanceof NavigationStart) {
+                console.warn(event.url)
+                if (event.url == "/auth") {
+                  this.router.navigate(['/home']);
+                }
+                sub.unsubscribe()
+              }
+            });
+          }
+
+
+
+
+
 
         } else {
           console.log(laodeduser)
