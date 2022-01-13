@@ -1,3 +1,44 @@
-<p>
-  business-list works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="heading-3 mx-4 my-5 col" style="color: #535461;">Businesses</div>
+    <div class="col pt-3 m-4">
+      <button class="btn btn-primary btn-lg btn-block submit-button ps-4 pe-4 float-end" role='button' type="submit"
+        [routerLink]="['/business','add']">Create a business</button>
+    </div>
+  </div>
+  <div class="row container-fluid">
+    <table class="table table-border-style">
+      <thead>
+        <tr>
+          <th scope="col" class="label-table-header">Name</th>
+          <th scope="col" class="label-table-header" style="text-align: right;">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of businesses$ | async">
+          <td scope="row" class="label-table-row-header py-5">{{item.companyName}}</td>
+          <td>
+            <div class="row float-end">
+              <div class="col">
+                <i class="ri-star-line float-end" style="font-size: 3rem; color: #BDBDBD;"></i>
+              </div>
+              <div class="col">
+                <a (click)="editBusiness(item)" class="bg-light label-4-medium">
+
+                  <div class="container">
+                    <div class="row pt-3">
+                        <div class="ps-1 label-4-medium">
+                          Edit
+                        </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

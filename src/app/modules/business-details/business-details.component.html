@@ -1,0 +1,6 @@
+<ng-container *ngIf="(type === 'add' || type === 'edit'); else businessDetails">
+  <app-business-form [isEdit]="type === 'edit'"></app-business-form>
+</ng-container>
+<ng-template #businessDetails>
+  <app-business-list></app-business-list>
+</ng-template>

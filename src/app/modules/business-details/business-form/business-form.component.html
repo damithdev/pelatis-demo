@@ -1,13 +1,60 @@
 <div class="container-fluid">
   <div class="row">
-      <div class="heading-3 mx-4 my-5" style="color: #535461;">Create a business</div>
+      <div class="heading-3 mx-4 my-5 col" style="color: #535461;">{{isEdit?'Update the':'Create a'}} business</div>
+      <div class="col m-4">
+        <a [routerLink]="['/business','list']" class="float-end"><i class="ri-close-fill" style="font-size: 4rem; color: #BDBDBD;"></i></a>
+        
+      </div>
   </div>
   <div class="row container-fluid">
 
-      <div class="col-lg-6 col-sm-12 col-xs-12">
-        <app-custom-input [label]="'Comapny Name'" [formControlName]="'comapny-name'" [controlId]="'comapny-name'" ></app-custom-input>
-        <!-- <app-custom-select  [label]="'Type of Business'" [formControlName]="'type-of-business'" [controlId]="'type-of-business'" [selectMenuOptions]="businessTypeOptions"></app-custom-select> -->
+      <form #businessForm="ngForm" (ngSubmit)="dynamicForm.valid && onSubmit()">
+        <ng-container [formGroup]="dynamicForm" >
+          <div  *ngIf="dynamicForm" class="col-lg-6 col-sm-12 col-xs-12">
+            <app-dynamic-form-field [formField]="companyNameField"></app-dynamic-form-field>
+
+            <div class="mt-4">
+              <app-dynamic-form-field [formField]="typeOfBusinessField"></app-dynamic-form-field>
+            </div>
+            <div class="mt-4">
+              <p class="paragraph-2-regular">This helps Wave display the right accounts,saving you time. Choose the option that best represents your business</p>
+            </div>
+            <app-dynamic-form-field [formField]="countryField"></app-dynamic-form-field>
+            <div class="mt-4">
+              <p class="paragraph-2-regular">If you do business in one country but are based in another, choose the country where you file your taxes,
+                or where your business is incoporated. Once you start using Payroll or Payments, you won't be able to change your business country.
+              </p>
+            </div>
+            <app-dynamic-form-field [formField]="currencyField"></app-dynamic-form-field>
+            <div class="mt-4">
+              <p class="paragraph-2-regular">This is your reporting currency and cannot be changed. You can still send invoices, track expenses and enter transactions in any currency and an exchange rate is applied for you.
+              </p>
+            </div>
+           
+          </div>
+        </ng-container>
+
+        <div class="pt-3 mt-4">
+          <button *ngIf="!isLoading; else loadingSpinnerBlock"
+              class="btn btn-primary btn-lg btn-block submit-button ps-4 pe-4" role='button' type="submit" [disabled]="!dynamicForm.valid">Save</button>
+
+          <ng-template #loadingSpinnerBlock>
+
+              <div class="text-center" style="height: 3rem">
+                  <app-loading-spinner></app-loading-spinner>
+              </div>
+          </ng-template>
 
       </div>
+      </form>
+      
+
+
+      
+        <pre>
+            {{ dynamicForm.value | json }}
+            {{ dynamicForm.valid }}
+        </pre>
+
   </div>
 </div>

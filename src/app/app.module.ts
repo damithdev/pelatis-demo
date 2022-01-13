@@ -2,6 +2,7 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 /** Service */
 import { ConfigService } from './app-config.service';
@@ -31,6 +32,7 @@ import { AuthService } from './auth/auth.service';
 import { RouterModule } from '@angular/router';
 import { OnboardingModule } from './modules/onboarding/onboarding.module';
 import { BusinessDetailsModule } from './modules/business-details/business-details.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 ///// Other
@@ -75,8 +77,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ToastrModule.forRoot(),
     StoreModule.forRoot({}),
     EffectsModule.forRoot(),
-
-
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [
     ConfigService,

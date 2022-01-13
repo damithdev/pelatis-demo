@@ -43,7 +43,7 @@
 
               <div class="row dropdown-menu-item-row">
                 <div class="col">
-                  <a class="link-item-menu" [routerLink]="['/business']">Create new business</a>
+                  <a class="link-item-menu" [routerLink]="['/business','add']">Create new business</a>
 
                 </div>
 
@@ -137,7 +137,7 @@
       <div class="pt-5">
         <div class="list-group list-group-flush" *ngFor="let item of menuItems$ | async">
 
-          <button type="button" class="btn side-navbar-button label-5-regular">
+          <button type="button" class="btn side-navbar-button label-5-regular" [routerLink]="item.path" routerLinkActive="active-setting">
             <div class="container">
               <div class="row w-100">
                 <div class="col-1">

@@ -5,7 +5,7 @@ import { AuthResponse, AuthService } from 'src/app/auth/auth.service';
 import { BusinessModel } from 'src/app/shared/models/business.model';
 import { Validators } from '@angular/forms';
 import { map, tap } from 'rxjs/operators';
-import { BusinessApiClientServiceService } from 'src/app/shared/data/BusinessApiClientService.service';
+import { BusinessDataService } from 'src/app/shared/data/business-data.service';
 import { Constants } from 'src/app/shared/utility/Constants';
 import { UserModel } from 'src/app/shared/models/user.model';
 import { environment } from 'src/environments/environment';
@@ -20,7 +20,7 @@ export class OnboardingService {
   user!:UserModel;
   // business!:BusinessModel;
   
-  constructor(private http: HttpClient, private authService: AuthService,private businessService:BusinessApiClientServiceService) { }
+  constructor(private http: HttpClient, private authService: AuthService,private businessService:BusinessDataService) { }
 
   initializeFormData() {
     this.authService.user.subscribe(u => {
